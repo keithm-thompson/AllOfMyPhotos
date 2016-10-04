@@ -1,7 +1,8 @@
 import React from 'react';
 import AuthForm from './auth_form';
+import { withRouter } from 'react-router';
 
-export default class SignupForm extends React.Component {
+class SignupForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -9,7 +10,9 @@ export default class SignupForm extends React.Component {
   }
 
   processForm(user) {
-    this.props.signup(user);
+    this.props.signup(user, () => {
+        return this.props.router.push("/");
+    });
   }
 
 
@@ -24,3 +27,5 @@ export default class SignupForm extends React.Component {
   }
 
 }
+
+export default withRouter(SignupForm);

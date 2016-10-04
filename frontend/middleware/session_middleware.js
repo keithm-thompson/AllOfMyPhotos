@@ -12,8 +12,12 @@ import {
 } from '../util/session_api_util.js';
 
 export default ({ getState, dispatch }) => (next) => (action) => {
-  let success = (user) => dispatch(receiveCurrentUser(user));
-  let error = (errors) => dispatch(receiveErrors(errors));
+  let success = (user) => {
+                            dispatch(receiveCurrentUser(user))
+                            action.callback();
+                          };
+
+  let error = (errors) => dispatch(receiveErrors(errors.responseJSON));
 
   switch (action.type) {
     case LOGIN:

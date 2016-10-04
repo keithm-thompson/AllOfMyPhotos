@@ -1,7 +1,8 @@
 import React from 'react';
 import AuthForm from './auth_form';
+import { withRouter } from 'react-router';
 
-export default class LoginForm extends React.Component {
+class LoginForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -9,7 +10,9 @@ export default class LoginForm extends React.Component {
   }
 
   processForm(user) {
-    this.props.login(user);
+    this.props.login(user, () => {
+      return this.props.router.push("/");
+    });
   }
 
   render() {
@@ -21,5 +24,5 @@ export default class LoginForm extends React.Component {
         label={"Log In"}/>
     );
   }
-
 }
+export default withRouter(LoginForm);

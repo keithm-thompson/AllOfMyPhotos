@@ -1,7 +1,9 @@
+import React from 'react';
 import HeaderContainer from './header/header_container';
 
 const App = ({ children }) => (
-  <HeaderContainer />
+  <p>Hello</p>
 );
 
+// <HeaderContainer />
 export default App;

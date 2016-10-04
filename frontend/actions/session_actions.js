@@ -4,18 +4,20 @@ export const SIGNUP = "SIGNUP";
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
 
-export const login = (user) => ({
+export const login = (user, callback) => ({
   type: LOGIN,
-  user
+  user,
+  callback
 });
 
 export const logout = () => ({
   type: LOGOUT
 });
 
-export const signup = (user) => ({
+export const signup = (user, callback) => ({
   type: SIGNUP,
-  user
+  user,
+  callback
 });
 
 export const receiveCurrentUser = (currentUser) => ({

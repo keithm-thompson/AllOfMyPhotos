@@ -33,19 +33,17 @@ export default class Header extends React.Component {
   closeModal() {
     this.setState({ logInModalOpen: false });
     this.setState({ signUpModalOpen: false });
+    this.props.clearErrors();
   }
 
   render() {
-  
-  const { errors } = this.props.errors;
-
     return(
       <header>
-        <LoginForm errors={errors}
+        <LoginForm errors={this.props.errors}
             login={this.props.login}
             open={this.state.logInModalOpen}
             closeModal={this.closeModal} />
-        <SignupForm  errors={errors}
+          <SignupForm  errors={this.props.errors}
             signup={this.props.signup}
             open={this.state.signUpModalOpen}
             closeModal={this.closeModal} />

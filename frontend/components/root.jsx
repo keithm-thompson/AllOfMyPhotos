@@ -7,7 +7,7 @@ import App from './app';
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfNotLoggedIn }></Route>
+      <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfLoggedIn }></Route>
       <Route path="/" component={App} onEnter={ _ensureLoggedIn }>
         //more routes to come!
       </Route>
@@ -15,7 +15,7 @@ const Root = ({ store }) => (
   </Provider>
 );
 
-const _redirectIfNotLoggedIn = (nextState, replace) => {
+const _redirectIfLoggedIn = (nextState, replace) => {
   const currentUser = store.getState().session.currentUser;
   if (currentUser) {
     replace('/');

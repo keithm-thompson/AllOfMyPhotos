@@ -10,9 +10,9 @@
     "postinstall": "./node_modules/.bin/webpack"
   },
   "engines": {
-  "node": "5.1.0",
-  "npm": "3.3.12"
-},
+    "node": "5.1.0",
+    "npm": "3.3.12"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

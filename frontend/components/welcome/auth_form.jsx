@@ -9,6 +9,7 @@ export default class AuthForm extends React.Component {
                   password: ""
                 };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   handleSubmit(e) {
@@ -18,6 +19,7 @@ export default class AuthForm extends React.Component {
       password: this.state.password
     };
     this.props.processForm(user);
+    this.setState({ password: "" });
   }
 
   renderErrors() {
@@ -34,6 +36,11 @@ export default class AuthForm extends React.Component {
     }
   }
 
+  closeModal() {
+    this.props.closeModal();
+    this.setState({username: "", password: ""});
+  }
+
   update(field) {
 		return e => this.setState({
 			[field]: e.currentTarget.value
@@ -43,6 +50,7 @@ export default class AuthForm extends React.Component {
   componentWillMount() {
     Modal.setAppElement('#root');
   }
+
 
   render () {
 
@@ -62,7 +70,7 @@ export default class AuthForm extends React.Component {
             </label>
             <button onClick={this.handleSubmit}> { label } </button>
           </form>
-          <button onClick={this.props.closeModal}>Cancel</button>
+          <button onClick={this.closeModal}>Cancel</button>
         </Modal>
       </div>
     );

@@ -9,3 +9,4 @@ const WelcomePage = ({ children }) => (
 );
 
 export default WelcomePage;
+//

@@ -45,6 +45,7 @@
 }
 
 .header  li {
+  margin-top: 8px;
   float: left;
 }
 
@@ -52,13 +53,13 @@
   cursor: pointer;
   color: #ccc;
 }
-.header button {
-  padding: 16px 15px;
+.button {
+  padding: 8px 15px;
 }
-.header button:hover {
+.button:hover {
   cursor: pointer;
 }
-.header li:last-of-type {
-  background-color: #aaf;
+.signup-style {
+  background-color: rgba(18,143,220, 1);
   border-radius: 5px;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import  SignupForm from '../welcome/signup_form';
 import  SigninForm  from '../welcome/signin_form';
 
+
 export default class Header extends React.Component {
 
   constructor(props) {
@@ -11,6 +12,16 @@ export default class Header extends React.Component {
       signUpModalOpen: false
     };
     this.closeModal = this.closeModal.bind(this);
+    Header.handleClickOutside = Header.handleClickOutside.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  static handleClickOutside(type) {
+    return (e) => {
+    e.preventDefault();
+    this.handleClick(type)(e);
+    this.forceUpdate();
+    };
   }
 
   handleClick(type){
@@ -27,6 +38,8 @@ export default class Header extends React.Component {
       }
     };
   }
+
+
 
   loggedIn() {
   }
@@ -52,10 +65,10 @@ export default class Header extends React.Component {
             <a key={"logo"} className="header-logo">AllOfMyPhotos</a>
             <ul>
               <li key={"signin"}>
-                <button onClick={this.handleClick("signin")}> Sign In</button>
+                <button onClick={this.handleClick("signin")} className="button"> Sign In</button>
               </li>
               <li key={"signup"}>
-                <button onClick={this.handleClick("signup")}> Sign Up </button>
+                <button onClick={this.handleClick("signup")} className="button signup-style"> Sign Up </button>
               </li>
             </ul>
           </nav>

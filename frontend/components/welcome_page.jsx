@@ -1,10 +1,13 @@
 import React from 'react';
 import HeaderContainer from './header/header_container';
+import SplashPage from './welcome/splash_page';
+import Footer from './footer/footer';
 
 const WelcomePage = ({ children }) => (
   <div>
     <HeaderContainer />
-    { children }
+    <SplashPage />
+    <Footer />
   </div>
 );
 

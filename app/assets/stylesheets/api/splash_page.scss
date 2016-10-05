@@ -1,0 +1,101 @@
+.splashPage {
+  color: #fff;
+  text-shadow: .05em .05em .03em black;
+  background-color: #212727;
+}
+
+.firstContentImage {
+  background-image: image-url("splash-page.jpeg");
+  height: 929px;
+}
+.splashPage div {
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+
+  h3 {
+    // display: block;
+    font-size: 36px;
+    text-align: center;
+    order: 1;
+    width: 100%;
+    //
+    // vertical-align: middle;
+    // line-height: normal;
+    // padding: 300px;
+    // margin-top: 300px;
+    letter-spacing: 2px;
+  }
+
+  p {
+    order: 2;
+    text-align: center;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+    width: 100%;
+    // padding: 250px;
+    // margin-top: 5px;
+  }
+
+  button {
+    order: 3;
+    margin-top: 15px;
+    letter-spacing: 1.1px;
+
+  }
+
+}
+.splashPage ul {
+  display: flex;
+}
+
+.splashPage li {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 33.33%;
+  height: 400px;
+  background-size: cover;
+
+}
+.splashPage h4 {
+  order: 1;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  letter-spacing: 1.5px;
+}
+
+.splashPage p {
+  order: 2;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 1.1px;
+}
+.firstImage {
+  background-image: image-url("splash-page-list-one");
+}
+.secondImage {
+  background-image: image-url("splash-page-list-two");
+}
+.thirdImage {
+  background-image: image-url("splash-page-list-three");
+}
+
+.inspireMe {
+  height: 929px;
+}
+
+.inspireMeButton {
+  border: 1px solid #fff;
+  padding: 10px 20px;
+}
+
+.inspireMeButton:hover {
+  cursor: pointer;
+}

@@ -77,12 +77,15 @@ class Header extends React.Component {
       <header className="header group">
         <nav className="group">
           <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
-          <Link to={"/users/"} className="link-to-user">You</Link>
-          <ul className="menu">
-            <Link to="#" className="link">Upload Photos</Link>
-            <Link to="#" className="link">View Your Photos</Link>
-            <Link to="#" className="link">View Your Albums</Link>
-          </ul>
+          <div className="link-to-user">
+              <Link to={"/users/"} className="">You</Link>
+              <ul className="menu">
+                <Link to="#" className="link">Upload Photos</Link>
+                <Link to="#" className="link">View Your Photos</Link>
+                <Link to="#" className="link">View Your Albums</Link>
+              </ul>
+
+        </div>
           <ul>
             <li>
               <form className="search">

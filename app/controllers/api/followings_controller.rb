@@ -9,7 +9,10 @@ class Api::FollowingsController < ApplicationController
     if @following.save
       render "api/followers/show"
     else
-      render json: ["an error has occurred"]
+      render(
+        json: ["an error has occurred"],
+        status: 401
+      )
     end
   end
 
@@ -23,7 +26,10 @@ class Api::FollowingsController < ApplicationController
       @following.destroy
       render "api/followers/destroy"
     else
-      render json: ["an error has occurred"]
+      render(
+      json: ["an error has occurred"],
+      status: 401
+      )
     end
   end
 
@@ -31,5 +37,5 @@ private
   def following_params
     params.require(:following).permit(:followed_id)
   end
-  
+
 end

@@ -58,19 +58,23 @@ export default class AuthForm extends React.Component {
 
     return (
       <div>
-        <Modal isOpen={this.props.open}>
-          <form>
+        <Modal isOpen={this.props.open} className="modal-screen">
+          <form className="modal">
             <h1>{ label }</h1>
             { this.renderErrors() }
             <label> Username:
               <input type="text" value={ this.state.username } onChange={this.update("username")}/>
             </label>
+            <br></br>
+            <br></br>
             <label> Password:
               <input type="password" value={ this.state.password } onChange={this.update("password")} />
             </label>
+            <br></br>
+            <br></br>
             <button onClick={this.handleSubmit}> { label } </button>
+            <button onClick={this.closeModal} className="">Cancel</button>
           </form>
-          <button onClick={this.closeModal}>Cancel</button>
         </Modal>
       </div>
     );

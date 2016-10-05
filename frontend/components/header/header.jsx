@@ -1,13 +1,13 @@
 import React from 'react';
 import  SignupForm from '../welcome/signup_form';
-import  LoginForm  from '../welcome/login_form';
+import  SigninForm  from '../welcome/signin_form';
 
 export default class Header extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      logInModalOpen: false,
+      signinModalOpen: false,
       signUpModalOpen: false
     };
     this.closeModal = this.closeModal.bind(this);
@@ -16,13 +16,14 @@ export default class Header extends React.Component {
   handleClick(type){
     return (e) => {
       e.preventDefault();
-      if (type === "login") {
-        this.setState({ logInModalOpen: true });
+      if (type === "signin") {
+        this.setState({ signinModalOpen: true });
+        this.setState({ signUpModalOpen: false });
+        this.props.clearErrors()
       } else if (type === "signup"){
         this.setState({ signUpModalOpen: true });
-      } else {
-        this.setState({ logInModalOpen: false });
-        this.setState({ signUpModalOpen: false });
+        this.setState({ signinModalOpen: false });
+        this.props.clearErrors()
       }
     };
   }
@@ -31,31 +32,33 @@ export default class Header extends React.Component {
   }
 
   closeModal() {
-    this.setState({ logInModalOpen: false });
+    this.setState({ signinModalOpen: false });
     this.setState({ signUpModalOpen: false });
     this.props.clearErrors();
   }
 
   render() {
     return(
-      <header>
-        <LoginForm errors={this.props.errors}
-            login={this.props.login}
-            open={this.state.logInModalOpen}
+      <header className="header group">
+        <SigninForm errors={this.props.errors}
+            signin={this.props.signin}
+            open={this.state.signinModalOpen}
             closeModal={this.closeModal} />
           <SignupForm  errors={this.props.errors}
             signup={this.props.signup}
             open={this.state.signUpModalOpen}
             closeModal={this.closeModal} />
-        <ul>
-          <li key={"logo"}></li>
-          <li key={"signin"}>
-            <button onClick={this.handleClick("login")}> Sign In</button>
-          </li>
-          <li key={"signup"}>
-            <button onClick={this.handleClick("signup")}> Sign Up </button>
-          </li>
-        </ul>
+          <nav>
+            <a key={"logo"} className="header-logo">AllOfMyPhotos</a>
+            <ul>
+              <li key={"signin"}>
+                <button onClick={this.handleClick("signin")}> Sign In</button>
+              </li>
+              <li key={"signup"}>
+                <button onClick={this.handleClick("signup")}> Sign Up </button>
+              </li>
+            </ul>
+          </nav>
       </header>
     );
   }

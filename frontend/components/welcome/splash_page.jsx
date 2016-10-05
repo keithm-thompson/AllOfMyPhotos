@@ -19,7 +19,7 @@ export default class SplashPage extends React.Component {
   }
 
   render () {
-    this.backgroundImage = {backgroundImage: 'image-url(' + this.images[this.state.imageIdx] + ')'};
+    this.backgroundImage = {backgroundImage: "url(" + this.images[this.state.imageIdx] + ")"};
 
     return (
       <div className="splashPage">

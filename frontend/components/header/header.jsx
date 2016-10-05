@@ -15,13 +15,15 @@ class Header extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     Header.handleClickOutside = Header.handleClickOutside.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    window.header = this;
   }
 
   static handleClickOutside(type) {
     return (e) => {
+      console.log(window.that);
     e.preventDefault();
-    this.handleClick(type)(e);
-    this.forceUpdate();
+    window.header.handleClick(type)(e);
+    window.header.forceUpdate();
     };
   }
 
@@ -43,8 +45,6 @@ class Header extends React.Component {
       }
     };
   }
-
-
 
   welcomePageHeader() {
     return(

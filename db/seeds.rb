@@ -16,3 +16,11 @@ daniel = User.create!(username: "daniel", password: "starwars")
 maurice = User.create!(username: "maurice", password: "starwars")
 oscar = User.create!(username: "oscar", password: "starwars")
 fred = User.create!(username: "fred", password: "starwars")
+
+Following.destroy_all
+
+keith_followed_sennacy = Following.create!(follower_id: keith.id, followed_id: sennacy.id)
+keith_followed_luna = Following.create!(follower_id: keith.id, followed_id: luna.id)
+keith_followed_leen = Following.create!(follower_id: keith.id, followed_id: leen.id)
+keith_followed_daniel = Following.create!(follower_id: keith.id, followed_id: daniel.id)
+maurice_followed_keith = Following.create!(follower_id: maurice.id, followed_id: keith.id)

@@ -1,9 +1,10 @@
 import React from 'react';
 import  SignupForm from '../welcome/signup_form';
 import  SigninForm  from '../welcome/signin_form';
+import { Link, withRouter } from 'react-router';
 
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,18 +31,72 @@ export default class Header extends React.Component {
       if (type === "signin") {
         this.setState({ signinModalOpen: true });
         this.setState({ signUpModalOpen: false });
-        this.props.clearErrors()
-      } else if (type === "signup"){
+        this.props.clearErrors();
+      } else if (type === "signup") {
         this.setState({ signUpModalOpen: true });
         this.setState({ signinModalOpen: false });
-        this.props.clearErrors()
+        this.props.clearErrors();
+      } else if (type === "signout") {
+        this.props.signout(()=> {
+          return this.props.router.push('/welcome');
+        });
       }
     };
   }
 
 
 
-  loggedIn() {
+  welcomePageHeader() {
+    return(
+      <header className="header group">
+        <SigninForm errors={this.props.errors}
+          signin={this.props.signin}
+          open={this.state.signinModalOpen}
+          closeModal={this.closeModal} />
+        <SignupForm  errors={this.props.errors}
+          signup={this.props.signup}
+          open={this.state.signUpModalOpen}
+          closeModal={this.closeModal} />
+        <nav>
+          <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
+          <ul>
+            <li key={"signin"}>
+              <button onClick={this.handleClick("signin")} className="button"> Sign In</button>
+            </li>
+            <li key={"signup"}>
+              <button onClick={this.handleClick("signup")} className="button signup-style"> Sign Up </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
+  }
+
+  loggedInHeader() {
+    return (
+      <header className="header group">
+        <nav className="group">
+          <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
+          <Link to={"/users/"} className="link-to-user">You</Link>
+          <ul className="menu">
+            <Link to="#" className="link">Upload Photos</Link>
+            <Link to="#" className="link">View Your Photos</Link>
+            <Link to="#" className="link">View Your Albums</Link>
+          </ul>
+          <ul>
+            <li>
+              <form className="search">
+                <input type="text" className="search-text" placeholder="People or Photos"></input>
+                <input type="submit" className="search-icon"></input>
+              </form>
+            </li>
+            <li>
+              <button onClick={this.handleClick("signout")} className="button"> Sign Out </button>
+            </li>
+          </ul>
+        </nav>
+      </header>
+    );
   }
 
   closeModal() {
@@ -51,28 +106,12 @@ export default class Header extends React.Component {
   }
 
   render() {
-    return(
-      <header className="header group">
-        <SigninForm errors={this.props.errors}
-            signin={this.props.signin}
-            open={this.state.signinModalOpen}
-            closeModal={this.closeModal} />
-          <SignupForm  errors={this.props.errors}
-            signup={this.props.signup}
-            open={this.state.signUpModalOpen}
-            closeModal={this.closeModal} />
-          <nav>
-            <a key={"logo"} className="header-logo">AllOfMyPhotos</a>
-            <ul>
-              <li key={"signin"}>
-                <button onClick={this.handleClick("signin")} className="button"> Sign In</button>
-              </li>
-              <li key={"signup"}>
-                <button onClick={this.handleClick("signup")} className="button signup-style"> Sign Up </button>
-              </li>
-            </ul>
-          </nav>
-      </header>
-    );
+    if (this.props.currentUser) {
+      return this.loggedInHeader();
+    } else {
+      return this.welcomePageHeader();
+    }
   }
 }
+
+export default withRouter(Header);

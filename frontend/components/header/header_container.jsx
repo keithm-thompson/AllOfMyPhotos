@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { signin, signup } from '../../actions/session_actions';
+import { signin, signup, signout } from '../../actions/session_actions';
 import Header from './header';
 
 const mapStateToProps = (state) => ({
@@ -10,6 +10,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   signin: (user, callback) => dispatch(signin(user, callback)),
   signup: (user, callback) => dispatch(signup(user, callback)),
+  signout: (callback) => dispatch(signout(callback)),
   clearErrors: () => dispatch({type: "CLEAR_ERRORS"})
 });
 

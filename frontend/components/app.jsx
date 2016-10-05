@@ -2,8 +2,9 @@ import React from 'react';
 import HeaderContainer from './header/header_container';
 
 const App = ({ children }) => (
-  <p>Hello</p>
+  <div>
+    <HeaderContainer />
+    <p>Hello</p>
+  </div>
 );
-
-// <HeaderContainer />
 export default App;

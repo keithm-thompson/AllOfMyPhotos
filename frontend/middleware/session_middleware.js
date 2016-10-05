@@ -1,13 +1,13 @@
-import { LOGIN,
-        LOGOUT,
+import { SIGNIN,
+        SIGNOUT,
         SIGNUP,
         receiveCurrentUser,
         receiveErrors
 } from '../actions/session_actions';
 
 import {
-  login,
-  logout,
+  signin,
+  signout,
   signup
 } from '../util/session_api_util.js';
 
@@ -20,17 +20,20 @@ export default ({ getState, dispatch }) => (next) => (action) => {
   let error = (errors) => dispatch(receiveErrors(errors.responseJSON));
 
   switch (action.type) {
-    case LOGIN:
-      login(action.user, success, error);
+    case SIGNIN:
+      signin(action.user, success, error);
       return next(action);
 
     case SIGNUP:
       signup(action.user, success, error);
       return next(action);
 
-    case LOGOUT:
-      const complete = () => next(action);
-      logout(complete);
+    case SIGNOUT:
+      const complete = () => {
+        next(action);
+        action.callback()
+      };
+      signout(complete);
       break;
     default:
       return next(action);

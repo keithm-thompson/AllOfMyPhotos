@@ -35,9 +35,7 @@
 
 |Path   | Component   | 
 |-------|-------------|
-| "/" | "WelcomePage" |
-| "/sign-up" | "AuthForm" |
-| "/sign-in" | "AuthForm" |
+| "/welcome" | "WelcomePage" |
 | "/" | "UsersFeedContainer" |
 | "/users/:id" | "UsersPhotoOverviewContainer" |
 | "/users/:user_id/addphoto" | "AddPhoto" |

@@ -7,7 +7,8 @@ AllMyPhotos is a web application inspired by Flickr built using Ruby on Rails an
 
 - [ ] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
-- [ ] Photos- [ ] Albums for organizing photos
+- [ ] Photos
+- [ ] Albums for organizing photos
 - [ ] Tags
 - [ ] View following feed
 - [ ] Infinite Scroll

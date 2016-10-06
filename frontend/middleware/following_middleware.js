@@ -8,7 +8,7 @@ import {
 import {
   receiveUserFollows,
   receiveUserFollowed,
-  removeFollowRelationship,
+  removeFollowRelationship
 } from '../actions/following_actions';
 
 const FollowingMiddleware = ({ getState, dispatch }) => (next) => (action) => {

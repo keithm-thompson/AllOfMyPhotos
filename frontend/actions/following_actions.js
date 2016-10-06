@@ -5,9 +5,9 @@ export const REMOVE_FOLLOW_RELATIONSHIP = "REMOVE_FOLLOW_RELATIONSHIP";
 export const DELETE_FOLLOW_RELATIONSHIP = "DELETE_FOLLOW_RELATIONSHIP";
 
 
-export const receiveUserFollows = (user) => ({
+export const receiveUserFollows = (users) => ({
   type: RECEIVE_USER_FOLLOWS,
-  user
+  users
 });
 export const receiveUserFollowed = (user) => ({
   type: RECEIVE_USER_FOLLOWED,

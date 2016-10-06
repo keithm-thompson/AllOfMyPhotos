@@ -11,8 +11,13 @@ import {
   signup
 } from '../util/session_api_util.js';
 
+import {
+  receiveUserFollows
+} from '../actions/following_actions'
+
 export default ({ getState, dispatch }) => (next) => (action) => {
   let success = (user) => {
+                            dispatch(receiveUserFollows(user.following))
                             dispatch(receiveCurrentUser(user))
                             action.callback();
                           };

@@ -1,7 +1,4 @@
 import {
-  receiveUserFollows,
-  receiveUserFollowed,
-  removeFollowRelationship,
   RECEIVE_USER_FOLLOWS,
   RECEIVE_USER_FOLLOWED,
   REMOVE_FOLLOW_RELATIONSHIP
@@ -13,10 +10,10 @@ const FollowingReducer = (state = {}, action) => {
 
   switch (action.type) {
     case RECEIVE_USER_FOLLOWED:
-      return merge({}, state, action.userFollowed);
+      return merge({}, state, action.user);
 
     case RECEIVE_USER_FOLLOWS:
-      return merge({}, state, action.userFollows);
+      return merge({}, state, action.users);
 
     case REMOVE_FOLLOW_RELATIONSHIP:
       let dupped_state = merge({}, state);
@@ -29,3 +26,23 @@ const FollowingReducer = (state = {}, action) => {
 };
 
 export default FollowingReducer;
+
+User.find_by_sql(<<-SQL)
+  SELECT
+    users.*
+  FROM
+    users
+  ORDER BY
+    case
+      when LENGTH(substring(users.username from '%keithaa%' for '#')) < LENGTH(substring('%keithaa%'from users.username  for '#')) then LENGTH(substring('%keithaa%'from users.username  for '#'))
+      else LENGTH(substring(users.username from '%keithaa%' for '#'))
+SQL
+
+User.find_by_sql([<<-SQL, 'keith'])
+SELECT
+ users.*
+FROM
+ users
+ORDER BY
+ (substring(users.username from ?))
+SQL

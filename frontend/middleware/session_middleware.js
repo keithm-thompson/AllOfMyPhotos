@@ -15,7 +15,7 @@ import {
   receiveUserFollows
 } from '../actions/following_actions'
 
-export default ({ getState, dispatch }) => (next) => (action) => {
+const SessionMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success = (user) => {
                             dispatch(receiveUserFollows(user.following))
                             dispatch(receiveCurrentUser(user))
@@ -44,3 +44,5 @@ export default ({ getState, dispatch }) => (next) => (action) => {
       return next(action);
   }
 };
+
+export default SessionMiddleware;

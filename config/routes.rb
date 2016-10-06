@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resource :session, only: [:create, :destroy]
     resources :followings, only: [:create, :destroy]
+    get 'search', to: 'users#search'
   end
 end

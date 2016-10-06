@@ -10,6 +10,20 @@ class Api::UsersController < ApplicationController
 		end
 	end
 
+  def search
+    @users = User.find_by_sql([<<-SQL, current_user.id, "^" + params[:username] + ".*"])
+      SELECT
+       users.*
+      FROM
+       users
+      WHERE
+        users.id != ?
+      ORDER BY
+       (substring(users.username from ?))
+      SQL
+    render "api/users/search"
+  end
+
 	private
 
 	def user_params

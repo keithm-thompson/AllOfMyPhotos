@@ -5,6 +5,7 @@ const App = ({ children }) => (
   <div>
     <HeaderContainer />
     <p>Hello</p>
+    { children }
   </div>
 );
 export default App;

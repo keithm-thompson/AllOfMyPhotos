@@ -7,17 +7,19 @@ import {
 import merge from 'lodash/merge';
 
 const FollowingReducer = (state = {}, action) => {
-
   switch (action.type) {
     case RECEIVE_USER_FOLLOWED:
-      return merge({}, state, action.user);
+      return merge ({},
+        state,
+        action.user
+      );
 
     case RECEIVE_USER_FOLLOWS:
-      return merge({}, state, action.users);
+      return action.users;
 
     case REMOVE_FOLLOW_RELATIONSHIP:
       let dupped_state = merge({}, state);
-      delete dupped_state.action[(action.user).id];
+      delete dupped_state[(Object.keys(action.user))[0]]
       return dupped_state;
 
     default:
@@ -26,23 +28,3 @@ const FollowingReducer = (state = {}, action) => {
 };
 
 export default FollowingReducer;
-
-User.find_by_sql(<<-SQL)
-  SELECT
-    users.*
-  FROM
-    users
-  ORDER BY
-    case
-      when LENGTH(substring(users.username from '%keithaa%' for '#')) < LENGTH(substring('%keithaa%'from users.username  for '#')) then LENGTH(substring('%keithaa%'from users.username  for '#'))
-      else LENGTH(substring(users.username from '%keithaa%' for '#'))
-SQL
-
-User.find_by_sql([<<-SQL, 'keith'])
-SELECT
- users.*
-FROM
- users
-ORDER BY
- (substring(users.username from ?))
-SQL

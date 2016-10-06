@@ -1,9 +1,9 @@
 class Api::FollowingsController < ApplicationController
   def create
-    @following = Following.new(Following.new({
+    @following = Following.new({
       follower_id: current_user.id,
       followed_id: following_params[:followed_id]
-    }))
+    })
 
     if @following.save
       render "api/followings/show"
@@ -16,7 +16,10 @@ class Api::FollowingsController < ApplicationController
   end
 
   def destroy
-    @following = Following.find(params[:id])
+    @following = Following.find_by({
+        follower_id: current_user.id,
+        followed_id: params[:id]
+      })
 
     if @following
       @following.destroy!

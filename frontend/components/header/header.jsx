@@ -10,11 +10,14 @@ class Header extends React.Component {
     super(props);
     this.state = {
       signinModalOpen: false,
-      signUpModalOpen: false
+      signUpModalOpen: false,
+      searchText: ""
     };
     this.closeModal = this.closeModal.bind(this);
     Header.handleClickOutside = Header.handleClickOutside.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSearchInput = this.handleSearchInput.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     window.header = this;
   }
 
@@ -44,6 +47,18 @@ class Header extends React.Component {
         });
       }
     };
+  }
+
+  handleSearchInput(e) {
+    e.preventDefault();
+    this.setState({searchText: e.currentTarget.value});
+  }
+
+  handleSearch(e) {
+    e.preventDefault();
+    this.props.searchUsers(this.state.searchText, ()=>{
+      return this.props.router.push(`/search/?${this.state.searchText}`);
+    });
   }
 
   welcomePageHeader() {
@@ -88,8 +103,12 @@ class Header extends React.Component {
         </div>
           <ul>
             <li>
-              <form className="search">
-                <input type="text" className="search-text" placeholder="People or Photos"></input>
+              <form className="search" onSubmit={this.handleSearch} >
+                <input type="text"
+                   className="search-text"
+                   placeholder="People or Photos"
+                   value={this.state.searchText}
+                   onChange={this.handleSearchInput}></input>
                 <input type="submit" className="search-icon"></input>
               </form>
             </li>

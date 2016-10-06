@@ -2,6 +2,9 @@
   <% if logged_in? %>
     window.currentUser = <%= render("api/users/user.json.jbuilder",
     user: current_user).html_safe %>
+
+    window.following = <%= render("api/followings/followings.json.jbuilder",
+    user: current_user).html_safe %>
   <% end %>
 </script>
 

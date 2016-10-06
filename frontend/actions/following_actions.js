@@ -14,9 +14,9 @@ export const receiveUserFollowed = (user) => ({
   user
 });
 
-export const createFollowRelationship = (user) => ({
+export const createFollowRelationship = (userId) => ({
   type: CREATE_FOLLOW_RELATIONSHIP,
-  user
+  userId
 });
 
 export const removeFollowRelationship = (user) => ({
@@ -24,7 +24,7 @@ export const removeFollowRelationship = (user) => ({
   user
 });
 
-export const deleteFollowRelationship = (id) => ({
+export const deleteFollowRelationship = (userId) => ({
   type: DELETE_FOLLOW_RELATIONSHIP,
-  id
+  userId
 });

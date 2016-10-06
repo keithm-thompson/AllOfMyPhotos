@@ -1,14 +1,14 @@
 import {
   createFollowRelationship,
-  deleteFollowRelationship,
-  CREATE_FOLLOW_RELATIONSHIP,
-  DELETE_FOLLOW_RELATIONSHIP
+  deleteFollowRelationship
 } from '../util/following_api_util';
 
 import {
   receiveUserFollows,
   receiveUserFollowed,
-  removeFollowRelationship
+  removeFollowRelationship,
+  CREATE_FOLLOW_RELATIONSHIP,
+  DELETE_FOLLOW_RELATIONSHIP
 } from '../actions/following_actions';
 
 const FollowingMiddleware = ({ getState, dispatch }) => (next) => (action) => {
@@ -18,12 +18,12 @@ const FollowingMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case CREATE_FOLLOW_RELATIONSHIP:
       success = (user) => dispatch(receiveUserFollowed(user));
-      createFollowRelationship(action.user, success, error);
+      createFollowRelationship(action.userId, success, error);
       return next(action);
 
     case DELETE_FOLLOW_RELATIONSHIP:
       success = (user) => dispatch(removeFollowRelationship(user));
-      deleteFollowRelationship((action.user).id, success, error);
+      deleteFollowRelationship(action.userId, success, error);
       return next(action);
 
     default:

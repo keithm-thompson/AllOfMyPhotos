@@ -44,3 +44,4 @@
 | "/photos/:id" | "ViewPhoto" |
 | "/photos/:id/tags" | "NewTag" |
 | "/albums/:id" | "ViewAlbum" |
+| "/search" | "SearchContainer" |

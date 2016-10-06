@@ -22,7 +22,6 @@ export default class SearchPage extends React.Component {
   }
 
   userItems() {
-    debugger
     let items =  this.props.search.map((user, idx)=>{
       let isFollowing;
       if (this.props.following[user.id]){
@@ -55,8 +54,8 @@ export default class SearchPage extends React.Component {
 
     return (
       <div>
-        <header className="search-nav-bar">
-          <ul>
+        <header className="search-nav-bar group">
+          <ul className="search-bar-list">
             <li>
               <a href="#">Photos</a>
             </li>

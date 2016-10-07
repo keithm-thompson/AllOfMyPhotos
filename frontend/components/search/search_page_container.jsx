@@ -8,7 +8,7 @@ import SearchPage from './search_page';
 
 const mapStateToProps = (state) => ({
   search: state.search,
-  following: state.following
+  following: state.user.following
 });
 
 const mapDispatchToProps = (dispatch) => ({

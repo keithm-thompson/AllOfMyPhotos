@@ -13,7 +13,7 @@ export default ({image, user, handleClick, isFollowing }) => {
   }
   return (
     <li className="people-item" >
-      <img src={window.inspireMe.inspireMeOne} className="user-icon"/>
+      <img src={user.image_url} className="user-icon"/>
       <h4 className="search-username">{ user.username }</h4>
       { button }
     </li>

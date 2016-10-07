@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
 	validates :username, uniqueness: true
 	validates :password, length: {minimum: 6}, allow_nil: :true
 
+	has_attached_file :image, default_url: "inspire-me-five.jpeg"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
 	after_initialize :ensure_session_token
 	before_validation :ensure_session_token_uniqueness
 

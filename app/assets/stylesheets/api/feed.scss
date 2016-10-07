@@ -1,0 +1,56 @@
+.feed-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 120px;
+}
+
+.photo-container {
+  max-width: 80%;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.feed-photo {
+  margin-bottom: 5px;
+}
+
+.feed-user-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  float: left;
+  margin: 0 18px 5px 15px;
+  border: .01em solid rgba(0,0,0,0.18);
+}
+
+.feed-container div {
+  display: flex;
+  align-items: center;
+}
+
+.photo-info {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+.feed-container h4 {
+  // float: left;
+  // padding-top: 20px;
+  font-weight: bold;
+  margin-right: 8px;
+  font-size: 18px;
+  margin-bottom: 3px;
+}
+
+.uploaded-time {
+  // float: left;
+  color: #888;
+  font-size: 14px;
+}
+
+.feed-container p {
+  font-size: 13px;
+}

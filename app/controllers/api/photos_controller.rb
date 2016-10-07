@@ -11,6 +11,21 @@ class Api::PhotosController < ApplicationController
     end
   end
 
+  def create
+    @photo = Photo.new(photo_params)
+    @photo.user_id = current_user.id
+
+    if @photo.save
+      render "api/photos/show"
+    else
+      render(
+            json: @photo.errors.full_messages,
+            status: 401
+            )
+    end
+  end
+
+
   def initial_feed
     @photos = Photo.find_by_sql([<<-SQL, current_user.id])
         SELECT
@@ -35,7 +50,7 @@ class Api::PhotosController < ApplicationController
         SQL
 
     if @photos
-      render "api/photos/index"
+      render "api/photos/feed"
     else
       render(
         json: ["Feed could not be fetched. Please try again"],
@@ -46,7 +61,7 @@ class Api::PhotosController < ApplicationController
   end
 
   def full_feed
-    @photos = Photo.find_by_sql([<<-SQL, current_user.id])
+    @photos = Photo.includes(:user).find_by_sql([<<-SQL, current_user.id])
         SELECT
           photos.*
         FROM
@@ -66,7 +81,7 @@ class Api::PhotosController < ApplicationController
           photos.created_at DESC
       SQL
     if @photos
-      render "api/photos/index"
+      render "api/photos/feed"
     else
       render(
         json: ["Feed could not be fetched. Please try again"],
@@ -74,20 +89,6 @@ class Api::PhotosController < ApplicationController
       )
     end
 
-  end
-
-  def create
-    @photo = Photo.new(photo_params)
-    @photo.user_id = current_user.id
-
-    if @photo.save
-      render "api/photos/show"
-    else
-      render(
-            json: @photo.errors.full_messages,
-            status: 401
-            )
-    end
   end
 
   def delete
@@ -105,6 +106,6 @@ class Api::PhotosController < ApplicationController
 
 private
   def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :title)
   end
 end

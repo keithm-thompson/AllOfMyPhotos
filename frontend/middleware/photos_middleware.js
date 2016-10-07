@@ -25,17 +25,17 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
 
   switch (action.type) {
     case FETCH_INITIAL_FEED:
-      success = (photos) => dispatch(receiveFeedPhotos(photo));
-      fetchInitialFeedPhotos(succes, error)
+      success = (photos) => dispatch(receiveFeedPhotos(photos));
+      fetchInitialFeedPhotos(success, error)
       return next(action);
 
     case FETCH_FULL_FEED:
-      success = (photos) => dispatch(receiveFeedPhotos(photo));
-      fetchFullFeedPhotos(succes, error)
+      success = (photos) => dispatch(receiveFeedPhotos(photos));
+      fetchFullFeedPhotos(success, error)
       return next(action);
 
     case FETCH_PHOTOS:
-      success = (photos) => dispatch(receivePhotos(photo));
+      success = (photos) => dispatch(receivePhotos(photos));
       fetchUserPhotos(action.userId, success, error);
       return next(action);
 
@@ -53,3 +53,5 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
       return next(action);
   }
 };
+
+export default PhotosMiddleware;

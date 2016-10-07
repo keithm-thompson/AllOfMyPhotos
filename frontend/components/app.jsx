@@ -2,7 +2,7 @@ import React from 'react';
 import HeaderContainer from './header/header_container';
 
 const App = ({ children }) => (
-  <div>
+  <div className="app-container">
     <HeaderContainer />
     { children }
   </div>

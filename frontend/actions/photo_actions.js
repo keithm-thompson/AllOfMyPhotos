@@ -32,7 +32,7 @@ export const receivePhotos = (photos) => ({
   photos
 });
 
-export const receiveFeedPhotos = (photots) => ({
+export const receiveFeedPhotos = (photos) => ({
   type: RECEIVE_FEED_PHOTOS,
   photos
 });

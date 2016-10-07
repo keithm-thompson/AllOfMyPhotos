@@ -19,7 +19,7 @@
  // }
  html, body, header, nav, h1, a, ul, li,
  strong, main, section, img, div, h2, p,
- form, fieldset, label, button, article, footer, small {
+ form, fieldset, label, button, article, footer, small, h4,h5 {
    margin: 0;
    padding: 0;
    border: 0;
@@ -40,7 +40,7 @@
    font-family: sans-serif;
    font-size: 16px;
    line-height: 1.1666666666;
-   background: #eee;
+   background: #ddd;
    color: #000;
  }
 
@@ -59,3 +59,7 @@
    display: block;
    clear: both;
  }
+
+.app-container {
+  background: #ddd;
+}

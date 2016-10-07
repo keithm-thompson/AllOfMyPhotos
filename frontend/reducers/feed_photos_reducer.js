@@ -10,3 +10,5 @@ const FeedPhotosReducer = (state = [], action) => {
       return state;
   }
 };
+
+export default FeedPhotosReducer;

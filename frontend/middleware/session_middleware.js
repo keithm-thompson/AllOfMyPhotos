@@ -17,8 +17,12 @@ import {
 
 const SessionMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success = (user) => {
-                            dispatch(receiveUserFollows(user.following))
-                            dispatch(receiveCurrentUser(user))
+                            dispatch(receiveUserFollows(user.following));
+                            dispatch(receiveCurrentUser({
+                                                id: user.id,
+                                                username: user.username,
+                                                imageUrl: user.image_url
+                                              }));
                             action.callback();
                           };
 

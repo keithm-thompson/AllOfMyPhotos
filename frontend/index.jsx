@@ -5,14 +5,12 @@ import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
   let preloadedState;
-  // window.searchUsers = fetch;
   if (window.currentUser) {
 
     preloadedState = {
       session: {
         currentUser: window.currentUser
-      },
-      following: window.following,
+      }
     };
 
   }

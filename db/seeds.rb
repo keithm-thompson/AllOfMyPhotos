@@ -27,3 +27,7 @@ keith_followed_daniel = Following.create!(follower_id: keith.id, followed_id: da
 keith_followed_danielle = Following.create!(follower_id: keith.id, followed_id: danielle.id)
 maurice_followed_keith = Following.create!(follower_id: maurice.id, followed_id: keith.id)
 danielle_followed_keith = Following.create!(follower_id: danielle.id, followed_id: keith.id)
+
+Photo.destroy_all
+
+keith_one = Photo.create!(image: "../app/assets/images/keith-one.jpeg", user_id: keith.id)

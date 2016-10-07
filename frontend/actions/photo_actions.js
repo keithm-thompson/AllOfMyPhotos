@@ -3,7 +3,8 @@ export const DELETE_PHOTO = "DELETE_PHOTO";
 export const RECEIVE_FEED_PHOTOS = "RECEIVE_PHOTOS";
 export const RECEIVE_PHOTO = "RECEIVE_PHOTO";
 export const REMOVE_PHOTO = "REMOVE_PHOTO";
-export const FETCH_FEED = "FETCH_FEED";
+export const FETCH_INITIAL_FEED = "FETCH_INITIAL_FEED";
+export const FETCH_FULL_FEED = "FETCH_FULL_FEED";
 export const FETCH_PHOTOS = "FETCH_PHOTOS";
 
 export const uploadPhoto = (photo) => ({
@@ -36,11 +37,15 @@ export const receiveFeedPhotos = (photots) => ({
   photos
 });
 
-export const fetchFeed = () => ({
-  type: FETCH_FEED,
+export const fetchInitialFeed = () => ({
+  type: FETCH_INITIAL_FEED
+});
+
+export const fetchFullFeed = () => ({
+  type: FETCH_FULL_FEED
 });
 
 export const fetchPhotos = (userId) => ({
   type: FETCH_PHOTOS,
   userId
-})
+});

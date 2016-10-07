@@ -1,8 +1,8 @@
 class Api::PhotosController < ApplicationController
   def index
-    @photos = Photos.find_by(user_id: params[:id])
+    @photos = Photo.find_by(user_id: params[:id])
     if @photos
-      render json: "api/photos/index"
+      render "api/photos/index"
     else
       render(
         json: ["an error has occured"],
@@ -11,7 +11,69 @@ class Api::PhotosController < ApplicationController
     end
   end
 
-  def feed
+  def initial_feed
+    @photos = Photo.find_by_sql([<<-SQL, current_user.id])
+        SELECT
+          photos.*
+        FROM
+          photos
+        WHERE
+          photos.user_id IN (
+            SELECT
+              followings.followed_id
+            FROM
+              users
+            JOIN
+              followings ON followings.follower_id = users.id
+            WHERE
+              followings.follower_id = ?
+            )
+        ORDER BY
+          photos.created_at DESC
+        LIMIT
+          10
+        SQL
+
+    if @photos
+      render "api/photos/index"
+    else
+      render(
+        json: ["Feed could not be fetched. Please try again"],
+        status: 404
+      )
+    end
+
+  end
+
+  def full_feed
+    @photos = Photo.find_by_sql([<<-SQL, current_user.id])
+        SELECT
+          photos.*
+        FROM
+          photos
+        WHERE
+          photos.user_id IN (
+            SELECT
+              followings.followed_id
+            FROM
+              users
+            JOIN
+              followings ON followings.follower_id = users.id
+            WHERE
+              followings.follower_id = ?
+            )
+        ORDER BY
+          photos.created_at DESC
+      SQL
+    if @photos
+      render "api/photos/index"
+    else
+      render(
+        json: ["Feed could not be fetched. Please try again"],
+        status: 404
+      )
+    end
+
   end
 
   def create
@@ -19,7 +81,7 @@ class Api::PhotosController < ApplicationController
     @photo.user_id = current_user.id
 
     if @photo.save
-      render json: "api/photos/show"
+      render "api/photos/show"
     else
       render(
             json: @photo.errors.full_messages,
@@ -32,12 +94,13 @@ class Api::PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     if @photo
       @photo.destroy!
-      render json: "api/photos/show"
+      render "api/photos/show"
     else
       render(
       json: ["an error has occured"],
       status: 401
       )
+    end
   end
 
 private

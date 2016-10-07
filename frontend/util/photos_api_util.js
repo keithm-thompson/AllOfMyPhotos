@@ -12,16 +12,25 @@ export const deletePhoto = (photoId, success, error) => (
   $.ajax({
     method: 'POST',
     url: `api/photos/${photoId}`,
-    data: { photo },
+    data: { photo: photoId },
     success,
     error
   })
 );
 
-export const fetchFeedPhotos = (success, error) => (
+export const fetchInitialFeedPhotos = (success, error) => (
   $.ajax({
     method: 'GET',
-    url: 'api/photos/feed',
+    url: 'api/initial_feed',
+    success,
+    error
+  })
+);
+
+export const fetchFullFeedPhotos = (success, error) => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/full_feed',
     success,
     error
   })

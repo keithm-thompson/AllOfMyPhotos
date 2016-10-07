@@ -1,8 +1,9 @@
 import {
-  fetchFeedPhotos,
+  fetchInitialFeedPhotos,
+  fetchFullFeedPhotos,
   fetchUserPhotos,
   uploadPhoto,
-  deletePhoto,
+  deletePhoto
 } from '../util/photos_api_util';
 
 import {
@@ -10,21 +11,27 @@ import {
   receivePhotos,
   removePhoto,
   receiveFeedPhotos,
-  FETCH_FEED,
+  FETCH_INITIAL_FEED,
+  FETCH_FULL_FEED,
   FETCH_PHOTOS,
   UPLOAD_PHOTO,
   DELETE_PHOTO
 } from '../actions/photo_actions';
 
 
-const PhotosMiddleware = ({getState, dispatch}) => (next) => (action) => {
+const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;
   let error = (e) => console.log(e);
 
   switch (action.type) {
-    case FETCH_FEED:
+    case FETCH_INITIAL_FEED:
       success = (photos) => dispatch(receiveFeedPhotos(photo));
-      fetchFeedPhotos(succes, error)
+      fetchInitialFeedPhotos(succes, error)
+      return next(action);
+
+    case FETCH_FULL_FEED:
+      success = (photos) => dispatch(receiveFeedPhotos(photo));
+      fetchFullFeedPhotos(succes, error)
       return next(action);
 
     case FETCH_PHOTOS:
@@ -41,7 +48,7 @@ const PhotosMiddleware = ({getState, dispatch}) => (next) => (action) => {
       success = (photo) => dispatch(removePhoto(photo));
       deletePhoto(action.photoId, success, error)
       return next(action);
-      
+
     default:
       return next(action);
   }

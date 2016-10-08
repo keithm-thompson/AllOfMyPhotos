@@ -6,10 +6,14 @@ import {
 const SearchReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_USERS_SEARCH_RESULTS:
-      return action.users;
+      return [
+      ...action.users
+    ];
 
     case RECEIVE_PHOTOS_SEARCH_RESULTS:
-      return action.photos;
+      return [
+        ...action.photos
+      ];
 
     default:
       return state;

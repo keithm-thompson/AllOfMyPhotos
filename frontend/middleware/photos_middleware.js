@@ -26,12 +26,12 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case FETCH_INITIAL_FEED:
       success = (photos) => dispatch(receiveFeedPhotos(photos));
-      fetchInitialFeedPhotos(success, error)
+      fetchInitialFeedPhotos(success, error);
       return next(action);
 
     case FETCH_FULL_FEED:
       success = (photos) => dispatch(receiveFeedPhotos(photos));
-      fetchFullFeedPhotos(success, error)
+      fetchFullFeedPhotos(success, error);
       return next(action);
 
     case FETCH_PHOTOS:
@@ -41,12 +41,12 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
 
     case UPLOAD_PHOTO:
       success = (photo) => dispatch(receivePhoto(photo));
-      uploadPhoto(photo, success, error)
+      uploadPhoto(action.photo, success, error);
       return next(action);
 
     case DELETE_PHOTO:
       success = (photo) => dispatch(removePhoto(photo));
-      deletePhoto(action.photoId, success, error)
+      deletePhoto(action.photoId, success, error);
       return next(action);
 
     default:

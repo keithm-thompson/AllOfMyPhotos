@@ -10,6 +10,12 @@ json.following do
   end
 end
 
+json.followers do
+  json.array! user.followers do |users|
+    json.partial! "api/users/user.json.jbuilder", user: users
+  end
+end
+
 json.photos do
     json.partial! "api/photos/index.json.jbuilder", photos: user.photos
 end

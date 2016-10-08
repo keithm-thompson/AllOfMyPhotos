@@ -15,12 +15,12 @@ const FollowingReducer = (state = {}, action) => {
       );
 
     case RECEIVE_USER_FOLLOWS:
-      return action.users;
+      return merge({}, action.users);
 
     case REMOVE_FOLLOW_RELATIONSHIP:
-      let dupped_state = merge({}, state);
-      delete dupped_state[(Object.keys(action.user))[0]]
-      return dupped_state;
+      let duppedState = merge({}, state);
+      delete duppedState[(Object.keys(action.user))[0]];
+      return duppedState;
 
     default:
       return state;

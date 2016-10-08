@@ -5,9 +5,13 @@ import {
 const FeedPhotosReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_FEED_PHOTOS:
-      return action.photos;
+      return [
+        ...action.photos
+      ];
     default:
-      return state;
+      return [
+        ...state
+      ];
   }
 };
 

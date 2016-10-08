@@ -5,3 +5,8 @@ export const receiveUserProperties = (properties) => ({
   type: RECEIVE_USER_PROPERTIES,
   properties
 });
+
+export const fetchUser = (userId) => ({
+  type: FETCH_USER,
+  userId
+});

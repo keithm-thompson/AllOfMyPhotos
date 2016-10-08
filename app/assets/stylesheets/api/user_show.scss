@@ -1,0 +1,88 @@
+.user-show {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90%;
+  background-size: cover;
+  height: 120px;
+  width: 88%;
+  padding-top: 130px;
+  background-size: 100%;
+  background-attachment: scroll;
+  position: relative;
+  top: 50px;
+  background-position: 50% 50%;
+  color: #fff;
+  padding-bottom: 10px;
+}
+
+
+.user-show-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.03) 8%,rgba(0,0,0,.11) 21%,rgba(0,0,0,.61) 78%,rgba(0,0,0,.7) 95%,rgba(0,0,0,.7));
+  justify-content: center;
+  height: 320px;
+}
+
+.user-show-info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-show  h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+  width: 100%;
+  font-weight: 100;
+  letter-spacing: 1.1px;
+}
+
+.user-show img {
+  width: 100px;
+  height: 100px;
+  margin-left: 40px;
+  padding-bottom: 18px;
+  margin-right: 32px;
+}
+
+.user-show h5 {
+  font-size: 14px;
+  margin-right: 15px;
+  font-weight: 100;
+}
+
+.user-show-nav-bar {
+  position: relative;
+  top: 310px;
+  background-color: #fff;
+  box-shadow: inset 0 -2px transparent;
+  border-bottom: 1px solid #ccc;
+}
+.user-show-nav-bar a {
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 25px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 12px 20px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 170%;
+  opacity: .75;
+  box-sizing: border-box;
+  height: 50px;
+}
+
+
+.user-show-nav-bar ul {
+  margin-left: 130px;
+}

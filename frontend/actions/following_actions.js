@@ -1,5 +1,6 @@
 export const RECEIVE_USER_FOLLOWS = "RECEIVE_USER_FOLLOWS";
 export const RECEIVE_USER_FOLLOWED = "RECEIVE_USER_FOLLOWED";
+export const RECEIVE_USER_FOLLOWERS = "RECEIVE_USER_FOLLOWERS";
 export const CREATE_FOLLOW_RELATIONSHIP = "CREATE_FOLLOW_RELATIONSHIP";
 export const REMOVE_FOLLOW_RELATIONSHIP = "REMOVE_FOLLOW_RELATIONSHIP";
 export const DELETE_FOLLOW_RELATIONSHIP = "DELETE_FOLLOW_RELATIONSHIP";
@@ -12,6 +13,11 @@ export const receiveUserFollows = (users) => ({
 export const receiveUserFollowed = (user) => ({
   type: RECEIVE_USER_FOLLOWED,
   user
+});
+
+export const receiveUserFollowers = (users) => ({
+  type: RECEIVE_USER_FOLLOWERS,
+  users
 });
 
 export const createFollowRelationship = (userId) => ({

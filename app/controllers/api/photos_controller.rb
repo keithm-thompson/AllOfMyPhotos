@@ -14,7 +14,7 @@ class Api::PhotosController < ApplicationController
   end
 
   def initial_feed
-    @photos = Photo.find_by_sql([<<-SQL, current_user.id])
+    @photos = Photo.includes(:user).find_by_sql([<<-SQL, current_user.id])
         SELECT
           photos.*
         FROM
@@ -35,7 +35,6 @@ class Api::PhotosController < ApplicationController
         LIMIT
           10
         SQL
-
     if @photos
       render "api/photos/feed"
     else

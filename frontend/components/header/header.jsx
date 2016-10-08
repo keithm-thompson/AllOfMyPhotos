@@ -73,7 +73,7 @@ class Header extends React.Component {
           open={this.state.signUpModalOpen}
           closeModal={this.closeModal} />
         <nav>
-          <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
+          <Link to="/" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
           <ul>
             <li key={"signin"}>
               <button onClick={this.handleClick("signin")} className="button"> Sign In</button>
@@ -93,7 +93,7 @@ class Header extends React.Component {
         <nav className="group">
           <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
           <div className="link-to-user">
-              <Link to={"/users/"} className="">You</Link>
+              <Link to={`/users/${this.props.currentUser.id}`} className="">You</Link>
               <ul className="menu">
                 <Link to="#" className="link">Upload Photos</Link>
                 <Link to="#" className="link">View Your Photos</Link>

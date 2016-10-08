@@ -8,9 +8,12 @@ export default class Feed extends React.Component {
   }
 
   render() {
-    const feedPhotos = this.props.feedPhotos.map((photo) => {
-      return <FeedPhoto key={photo.id} photo={photo} />;
-    });
+      const feedPhotos = this.props.feedPhotos.map((photo) => {
+        if (photo.user) {
+         return <FeedPhoto key={photo.id} photo={photo} />;
+         }
+      });
+
 
     return (
       <ul className="feed-container">

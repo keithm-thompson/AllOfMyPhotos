@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 	def show
-		@user = User.includes(:photos).includes(:users_followed).find_by(user_id: params[:id])
+		@user = User.includes(:photos).includes(:users_followed).includes(:followers).find(params[:id])
 		if @user
 			render "api/users/show"
 		else

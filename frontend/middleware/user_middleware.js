@@ -8,28 +8,27 @@ import {
 } from '../util/user_api_util';
 
 import {
-  receiveUserFollows
+  receiveUserFollows,
+  receiveUserFollowers
 } from '../actions/following_actions';
 
 import {
   receivePhotos
-} from '../actions/photos_actions';
+} from '../actions/photo_actions';
 
 const UserMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;
-  let error;
+  let error = (e) => console.log(e);
 
   switch (action.type) {
     case FETCH_USER:
       success = (user) => {
-        dispatch(receiveUserProperties({
-          id: user.id,
-          username: user.username,
-          imageUrl: user.imageUrl
-        }));
+        dispatch(receiveUserProperties(user.properties));
+        dispatch(receiveUserFollowers(user.followers));
         dispatch(receiveUserFollows(user.following));
         dispatch(receivePhotos(user.photos));
       };
+      fetchUser(action.userId, success, error);
       return next(action);
     default:
       next(action);

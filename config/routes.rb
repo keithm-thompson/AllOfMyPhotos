@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :followings, only: [:create, :destroy]
     resources :photos, only: [:create, :destroy]
-    get 'photos/:id', to: 'photos#index'
+    get 'user/:id', to: 'users#show'
+    get 'search', to: 'users#search'
     get 'initial_feed', to: 'photos#initial_feed'
     get 'full_feed', to: 'photos#full_feed'
-    get 'search', to: 'users#search'
   end
 end

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       session: {
         currentUser: window.currentUser
       },
-      user: window.currentUser
+      user: window.user
     };
 
   }

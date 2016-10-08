@@ -1,4 +1,16 @@
 class Api::UsersController < ApplicationController
+	def show
+		@user = User.includes(:photos).includes(:users_followed).find_by(user_id: params[:id])
+		if @user
+			render "api/users/show"
+		else
+			render(
+				json: ["an error has occured"],
+				status: 404
+			)
+		end
+	end
+
 	def create
 		@user = User.new(user_params)
 

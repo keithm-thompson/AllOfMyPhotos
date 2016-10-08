@@ -1,16 +1,4 @@
 class Api::PhotosController < ApplicationController
-  def index
-    @photos = Photo.find_by(user_id: params[:id])
-    if @photos
-      render "api/photos/index"
-    else
-      render(
-        json: ["an error has occured"],
-        status: 404
-      )
-    end
-  end
-
   def create
     @photo = Photo.new(photo_params)
     @photo.user_id = current_user.id
@@ -24,7 +12,6 @@ class Api::PhotosController < ApplicationController
             )
     end
   end
-
 
   def initial_feed
     @photos = Photo.find_by_sql([<<-SQL, current_user.id])

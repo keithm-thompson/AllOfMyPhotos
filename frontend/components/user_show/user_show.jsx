@@ -11,7 +11,7 @@ export default class UserShow extends React.Component {
     return(
       <div>
         <div className="user-show-container">
-          <div className="user-show" style={ {backgroundImage: "url(" + window.inspireMe.inspireMeOne + ")"}}>
+          <div className="user-show" style={ {backgroundImage: "url(" + window.inspireMe.userShowOne + ")"}}>
             <img src={ userProperties.image_url } className="user-icon"></img>
             <div className="user-show-info ">
               <h2>{ userProperties.username} </h2>
@@ -21,6 +21,7 @@ export default class UserShow extends React.Component {
           </div>
         </div>
         <UserShowMenu />
+        { this.props.children }
       </div>
     );
   }

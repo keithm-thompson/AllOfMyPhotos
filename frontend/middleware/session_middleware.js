@@ -13,16 +13,12 @@ import {
 
 import {
   receiveUserFollows
-} from '../actions/following_actions'
+} from '../actions/following_actions';
 
 const SessionMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success = (user) => {
                             dispatch(receiveUserFollows(user.following));
-                            dispatch(receiveCurrentUser({
-                                                id: user.id,
-                                                username: user.username,
-                                                imageUrl: user.image_url
-                                              }));
+                            dispatch(receiveCurrentUser(user.properties));
                             action.callback();
                           };
 
@@ -40,7 +36,7 @@ const SessionMiddleware = ({ getState, dispatch }) => (next) => (action) => {
     case SIGNOUT:
       const complete = () => {
         next(action);
-        action.callback()
+        action.callback();
       };
       signout(complete);
       break;

@@ -5,6 +5,7 @@ import WelcomePage from './welcome_page';
 import SearchPageContainer from './search/search_page_container';
 import FeedContainer from './feed/feed_container';
 import UserShowContainer from './user_show/user_show_container';
+import UserPhotosContainer from './user_show/user_photos_container';
 import { searchUsers } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -13,11 +14,13 @@ import App from './app';
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={hashHistory}>
-        <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfLoggedIn }></Route>
+        <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfLoggedIn } />
         <Route path="/" component={App} onEnter={ _ensureLoggedIn }>
           <IndexRoute component={FeedContainer} onEnter={ getInitialFeed } />
-          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState}></Route>
-          <Route path="users/:id" component={ UserShowContainer } onEnter={ getUser }></Route>
+          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState} ></Route>
+          <Route path="users/:id" component={ UserShowContainer } onEnter={ getUser }>
+            <IndexRoute component={ UserPhotosContainer } />
+          </Route>
         </Route>
     </Router>
   </Provider>

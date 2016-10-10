@@ -24,10 +24,10 @@ export default class UserPhoto extends React.Component {
       'user-photo-container': true,
       'img-hover': this.state.isHovered
     });
-    
+
 
     return (
-      <li className={liClassName} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+      <li className={ liClassName } onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave }>
         <img className="user-photo" src={this.props.imageUrl}></img>
       </li>
     );

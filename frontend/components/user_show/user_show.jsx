@@ -20,7 +20,7 @@ export default class UserShow extends React.Component {
             </div>
           </div>
         </div>
-        <UserShowMenu />
+        <UserShowMenu userProperties={this.props.user.properties} />
         { this.props.children }
       </div>
     );

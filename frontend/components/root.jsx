@@ -6,6 +6,7 @@ import SearchPageContainer from './search/search_page_container';
 import FeedContainer from './feed/feed_container';
 import UserShowContainer from './user_show/user_show_container';
 import UserPhotosContainer from './user_show/user_photos_container';
+import UploadPhotoFormContainer from './user_show/upload_photo_container';
 import { searchUsers } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -20,6 +21,7 @@ const Root = ({ store }) => (
           <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState} ></Route>
           <Route path="users/:id" component={ UserShowContainer } onEnter={ getUser }>
             <IndexRoute component={ UserPhotosContainer } />
+            <Route path="upload" component={ UploadPhotoFormContainer }></Route>
           </Route>
         </Route>
     </Router>
@@ -31,7 +33,7 @@ const _redirectIfLoggedIn = (nextState, replace) => {
   if (currentUser) {
     replace('/');
   }
-}
+};
 
 const _ensureLoggedIn = (nextState, replace) => {
   const currentUser = store.getState().session.currentUser;
@@ -54,7 +56,7 @@ const getInitialFeed = () => {
 };
 
 const getUser = () => {
-  let userIdRegex = /^#\/users\/(.*)\?/;
+  let userIdRegex = /^#\/users\/(\d*)/;
   let userId = window.location.hash.match(userIdRegex)[1];
   store.dispatch(fetchUser(userId));
 };

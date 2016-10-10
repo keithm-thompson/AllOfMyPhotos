@@ -103,13 +103,12 @@ class Header extends React.Component {
         </div>
           <ul>
             <li>
-              <form className="search" onSubmit={this.handleSearch} >
+              <form className="search " onSubmit={this.handleSearch} >
                 <input type="text"
                    className="search-text"
                    placeholder="People or Photos"
                    value={this.state.searchText}
                    onChange={this.handleSearchInput}></input>
-                <input type="submit" className="search-icon"></input>
               </form>
             </li>
             <li>
@@ -121,6 +120,8 @@ class Header extends React.Component {
     );
   }
 
+  // <i className="material-icons " onClick={ this.handleSearch }>search</i>
+  // <button className="search-icon"></input>
   closeModal() {
     this.setState({ signinModalOpen: false });
     this.setState({ signUpModalOpen: false });

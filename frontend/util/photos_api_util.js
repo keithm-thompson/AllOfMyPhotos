@@ -2,7 +2,10 @@ export const uploadPhoto = (photo, success, error) => (
   $.ajax({
     method: 'POST',
     url: 'api/photos',
-    data: { photo },
+    data: photo ,
+    dataType: "json",
+    contentType: false,
+    processData: false,
     success,
     error
   })
@@ -10,7 +13,7 @@ export const uploadPhoto = (photo, success, error) => (
 
 export const deletePhoto = (photoId, success, error) => (
   $.ajax({
-    method: 'POST',
+    method: 'DELETE',
     url: `api/photos/${photoId}`,
     data: { photo: photoId },
     success,

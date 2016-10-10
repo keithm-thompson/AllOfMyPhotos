@@ -97,7 +97,8 @@
   height: 250px;
   display: flex;
   align-items: flex-end;
-  opacity: .9;
+  opacity: 1;
+  background: linear-gradient(0deg,rgba(0,0,0,.9) 0,transparent 50%,transparent);
 }
 
 // .user-album-container:before {
@@ -110,10 +111,11 @@
 //   border-bottom: 1px solid #aaa;
 // }
 
-// .album-look {
-//   border-top: 1px solid black;
-//
-// }
+.album-look {
+
+  background-size: cover;
+  background-position: 50%;
+}
 
 .user-album-container {
   justify-content: space-between;
@@ -131,13 +133,16 @@
 }
 
 .user-album-container div {
-  padding: 10px 20px;
   font-weight: 600;
   bottom: 20px;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   transition: bottom .15s ease-out;
   box-sizing: border-box;
+}
+
+.user-album-info {
+    padding: 10px 20px;
 }
 
 .user-album-container h5 {

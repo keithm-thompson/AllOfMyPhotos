@@ -1,11 +1,10 @@
 import React from 'react';
 
 const UserAlbum = ({ title, coverPhotoUrl, numPhotos, albumView }) => (
-  <div className="album-look">
+  <div className="album-look" style={ { backgroundImage: "url(" + coverPhotoUrl + ")"} }>
     <li className="user-album"
-      onClick={albumView}
-      style={ { backgroundImage: "url(" + coverPhotoUrl + ")"} }>
-      <div>
+      onClick={albumView}>
+      <div className="user-album-info">
         <h5>{ title }</h5>
         <p>{ numPhotos } Photos</p>
       </div>

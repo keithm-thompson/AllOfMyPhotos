@@ -1,0 +1,34 @@
+.view-photo-container {
+  position: absolute;
+  top: 50px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 1200px;
+}
+
+.view-photo-user {
+  position: absolute;
+  left: 0;
+  color: #fff;
+}
+.view-photo-user img {
+  margin-right: 25px;
+  border: 0;
+  background-color: transparent;
+}
+
+.view-photo-div {
+  // width: 70%;
+  min-width: 300px;
+  max-width: 850px;
+}
+.photo {
+  max-height: 800px;
+  // width: 80%;
+  display: flex;
+  position: relative;
+  margin: auto;
+  -webkit-box-align: center;
+}

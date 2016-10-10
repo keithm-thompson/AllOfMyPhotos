@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
+
 export default class UserPhoto extends React.Component {
   constructor(props) {
     super(props);
@@ -27,9 +28,12 @@ export default class UserPhoto extends React.Component {
 
 
     return (
-      <li className={ liClassName } onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave }>
-        <img className="user-photo" src={this.props.imageUrl}></img>
-      </li>
+        <li className={ liClassName }
+           onMouseEnter={ this.handleMouseEnter }
+           onMouseLeave={ this.handleMouseLeave }
+           onClick={this.props.handleClick}>
+          <img className="user-photo" src={this.props.imageUrl}></img>
+        </li>
     );
   }
 }

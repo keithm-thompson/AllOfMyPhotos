@@ -1,3 +1,4 @@
+json.id album.id
 json.title album.title
 json.description album.description
 

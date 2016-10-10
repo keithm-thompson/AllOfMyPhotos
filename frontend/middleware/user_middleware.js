@@ -3,18 +3,16 @@ receiveUserProperties,
 FETCH_USER
 } from '../actions/user_actions';
 
-import {
-  fetchUser
-} from '../util/user_api_util';
+import { fetchUser } from '../util/user_api_util';
 
 import {
   receiveUserFollows,
   receiveUserFollowers
 } from '../actions/following_actions';
 
-import {
-  receivePhotos
-} from '../actions/photo_actions';
+import { receivePhotos } from '../actions/photo_actions';
+
+import { receiveAlbums } from '../actions/album_actions';
 
 const UserMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;

@@ -7,6 +7,7 @@ import FeedContainer from './feed/feed_container';
 import UserShowContainer from './user_show/user_show_container';
 import UserPhotosContainer from './user_show/user_photos_container';
 import UploadPhotoFormContainer from './user_show/upload_photo_container';
+import UserAlbumsContainer from './user_show/user_albums_container';
 import { searchUsers } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -22,6 +23,7 @@ const Root = ({ store }) => (
           <Route path="users/:id" component={ UserShowContainer } onEnter={ getUser }>
             <IndexRoute component={ UserPhotosContainer } />
             <Route path="upload" component={ UploadPhotoFormContainer }></Route>
+            <Route path="albums" component={ UserAlbumsContainer }></Route>
           </Route>
         </Route>
     </Router>

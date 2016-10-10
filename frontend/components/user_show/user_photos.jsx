@@ -8,11 +8,6 @@ export default class UserPhotos extends React.Component {
   }
 
   render() {
-
-    // const userPhotos = this.props.photos.map((photo) => {
-    //   return <UserPhoto key={ photo.id } imageUrl={ photo.image_url } />;
-    // });
-
     let rowsOfPhotos = [];
     let photos = [];
     for(let i = 0; i < this.props.photos.length; i++) {
@@ -28,12 +23,9 @@ export default class UserPhotos extends React.Component {
     }
   }
     return (
-      <div className="list-photos-container">
+      <div className="user-show-content">
         { rowsOfPhotos }
       </div>
     );
   }
 }
-// <ul className="user-photos-container">
-//   { userPhotos }
-// </ul>

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :photos
 
+  has_many :albums
+
   has_many :followers_join,
     class_name: :Following,
     foreign_key: :followed_id

@@ -17,5 +17,9 @@ json.followers do
 end
 
 json.photos do
-    json.partial! "api/photos/index", photos: @user.photos
+  json.partial! "api/photos/index", photos: @user.photos
+end
+
+json.albums do
+  json.partial! "api/albums/albums", albums: @user.albums
 end

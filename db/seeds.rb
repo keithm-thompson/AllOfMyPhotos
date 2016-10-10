@@ -1,4 +1,3 @@
-
 User.destroy_all
 
 keith = User.create!(username: "keith", password: "starwars")
@@ -48,3 +47,24 @@ sennacy_five = Photo.create!(image: File.open("app/assets/images/sennacy-five.jp
 maurice_two = Photo.create!(image: File.open("app/assets/images/maurice-two.jpeg"),title: Faker::Hipster.sentence, user_id: maurice.id)
 luna_five = Photo.create!(image: File.open("app/assets/images/luna-five.jpeg"),title: Faker::Hipster.sentence, user_id: luna.id)
 keith_one = Photo.create!(image: File.open("app/assets/images/keith-one.jpeg"),title: Faker::Hipster.sentence, user_id: keith.id)
+
+Album.destroy_all
+
+keith_album = Album.create!(title: Faker::Hipster.sentence, user_id: keith.id)
+danielle_album = Album.create!(title: Faker::Hipster.sentence, user_id: danielle.id)
+luna_album = Album.create!(title: Faker::Hipster.sentence, user_id: luna.id)
+sennacy_album = Album.create!(title: Faker::Hipster.sentence, user_id: sennacy.id)
+maurice_album = Album.create!(title: Faker::Hipster.sentence, user_id: maurice.id)
+
+AlbumPhoto.destroy_all
+
+keith_add_photo_to_album_one = AlbumPhoto.create!(album_id: keith_album.id, photo_id: keith_one.id)
+keith_add_photo_to_album_two = AlbumPhoto.create!(album_id: keith_album.id, photo_id: keith_two.id)
+danielle_add_photo_to_album_one = AlbumPhoto.create!(album_id: danielle_album.id, photo_id: danielle_one.id)
+danielle_add_photo_to_album_two = AlbumPhoto.create!(album_id: danielle_album.id, photo_id: danielle_two.id)
+sennacy_add_photo_to_album_one = AlbumPhoto.create!(album_id: sennacy_album.id, photo_id: sennacy_one.id)
+sennacy_add_photo_to_album_two = AlbumPhoto.create!(album_id: sennacy_album.id, photo_id: sennacy_two.id)
+maurice_add_photo_to_album_one = AlbumPhoto.create!(album_id: maurice_album.id, photo_id: maurice_one.id)
+maurice_add_photo_to_album_two = AlbumPhoto.create!(album_id: maurice_album.id, photo_id: maurice_two.id)
+luna_add_photo_to_album_one = AlbumPhoto.create!(album_id: luna_album.id, photo_id: luna_one.id)
+luna_add_photo_to_album_two = AlbumPhoto.create!(album_id: luna_album.id, photo_id: luna_two.id)

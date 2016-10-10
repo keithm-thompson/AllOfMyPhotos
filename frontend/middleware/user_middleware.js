@@ -27,6 +27,7 @@ const UserMiddleware = ({ getState, dispatch }) => (next) => (action) => {
         dispatch(receiveUserFollowers(user.followers));
         dispatch(receiveUserFollows(user.following));
         dispatch(receivePhotos(user.photos));
+        dispatch(receiveAlbums(user.albums));
       };
       fetchUser(action.userId, success, error);
       return next(action);

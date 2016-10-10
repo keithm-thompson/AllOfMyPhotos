@@ -4,13 +4,15 @@ import FollowingMiddleware from './following_middleware';
 import SearchMiddleware from './search_middleware';
 import PhotosMiddleware from './photos_middleware';
 import UserMiddleware from './user_middleware';
+import AlbumsMiddleware from './albums_middleware';
 
 const RootMiddleware = applyMiddleware(
   SessionMiddleware,
   FollowingMiddleware,
   SearchMiddleware,
   PhotosMiddleware,
-  UserMiddleware
+  UserMiddleware,
+  AlbumsMiddleware
 );
 
 export default RootMiddleware;

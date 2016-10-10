@@ -5,24 +5,35 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 1200px;
+  height: 95vh;
 }
 
 .view-photo-user {
   position: absolute;
-  left: 0;
+  left: 25px;
   color: #fff;
+  font-size: 25px;
+  top: 25px;
+}
+
+.view-photo-user:hover {
+  cursor: pointer;
+  color: #ccc;
+  opacity: .7;
 }
 .view-photo-user img {
   margin-right: 25px;
   border: 0;
   background-color: transparent;
+
 }
 
 .view-photo-div {
   // width: 70%;
   min-width: 300px;
   max-width: 850px;
+  display: flex;
+  align-self: center;
 }
 .photo {
   max-height: 800px;
@@ -31,4 +42,24 @@
   position: relative;
   margin: auto;
   -webkit-box-align: center;
+}
+
+.arrow {
+  color: #fff;
+  font-size: 60px !important;
+  display: flex;
+  align-self: center;
+  position: absolute;
+}
+
+.right-arrow {
+  right: 0;
+}
+
+.left-arrow {
+  left: 0;
+}
+.arrow:hover{
+  cursor: pointer;
+  opacity: .7;
 }

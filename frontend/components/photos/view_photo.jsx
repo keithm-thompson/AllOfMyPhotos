@@ -38,10 +38,10 @@ export default class ViewPhoto extends React.Component {
     if (this.state.idx >= 0) {
       let prevButton, nextButton;
       if (this.state.idx > 0) {
-        prevButton = <i className="material-icons" onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
+        prevButton = <i className="material-icons arrow left-arrow" onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
       }
       if (this.state.idx < this.props.photos.length) {
-        nextButton = <i className="material-icons" onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
+        nextButton = <i className="material-icons arrow right-arrow" onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
       }
       return(
         <div className="view-photo-container">

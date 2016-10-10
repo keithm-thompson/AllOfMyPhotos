@@ -17,10 +17,11 @@
 }
 
 .user-photo-container {
-  min-width: 20%;
-  max-width: 35%;
+  width: 20%;
   margin-bottom: 15px;
   transition: all .2s ease-in-out;
+  display: inline-table;
+
 }
 
 .user-photo {

@@ -92,11 +92,11 @@ class ViewPhoto extends React.Component {
       'on-move': true
     });
   }
-
-
-  componentDidMount(){
-    this.props.fetchUser(this.props.params.user_id);
-  }
+  //
+  //
+  // componentWillMount(){
+  //   this.props.fetchUser(this.props.params.user_id);
+  // }
 
   componentWillUpdate(nextProps){
     if (nextProps.photos[0] && this.state.idx < 0) {
@@ -104,14 +104,17 @@ class ViewPhoto extends React.Component {
       for(let i = 0; i < nextProps.photos.length; i++){
         if (nextProps.photos[i].id == this.props.params.id) {
           index = i;
+          this.setState({ idx: index });
         }
       }
-      this.setState({ idx: index });
     }
   }
 
-  render() {
+  // componentDidMount(){
+  //   debugger
+  // }
 
+  render() {
 
     if (this.state.mouseIdle) {
       this.hideActionsClasses();

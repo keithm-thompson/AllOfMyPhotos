@@ -29,8 +29,8 @@ class UserPhotos extends React.Component {
           </ul>
         );
       photos = [];
+      }
     }
-  }
     return (
       <div className="user-show-content">
         { rowsOfPhotos }

@@ -5,7 +5,6 @@ import {
 import merge from 'lodash/merge';
 
 const PropertiesReducer = (state = {}, action) => {
-
   switch (action.type) {
     case RECEIVE_USER_PROPERTIES:
       return merge({}, action.properties);

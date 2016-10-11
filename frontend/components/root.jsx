@@ -9,6 +9,7 @@ import UserPhotosContainer from './user_show/user_photos_container';
 import UploadPhotoFormContainer from './user_show/upload_photo_container';
 import UserAlbumsContainer from './user_show/user_albums_container';
 import ViewPhotoContainer from './photos/view_photo_container';
+import ViewAlbumContainer from './albums/view_album_container';
 import { searchUsers } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -21,8 +22,9 @@ const Root = ({ store }) => (
         <Route path="/" component={App} onEnter={ _ensureLoggedIn }>
           <IndexRoute component={FeedContainer} onEnter={ getInitialFeed } />
           <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState} ></Route>
-          <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer }></Route>
-          <Route path="users/:id" component={ UserShowContainer } onEnter={ getUser }>
+          <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser }></Route>
+          <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser }></Route>
+          <Route path="users/:user_id" component={ UserShowContainer } onEnter={ getUser }>
             <IndexRoute component={ UserPhotosContainer } />
             <Route path="upload" component={ UploadPhotoFormContainer }></Route>
             <Route path="albums" component={ UserAlbumsContainer }></Route>
@@ -60,9 +62,8 @@ const getInitialFeed = () => {
   store.dispatch(fetchInitialFeed());
 };
 
-const getUser = () => {
-  let userIdRegex = /^#\/users\/(\d*)/;
-  let userId = window.location.hash.match(userIdRegex)[1];
+const getUser = (nextState) => {
+  let userId = parseInt(nextState.params.user_id);
   store.dispatch(fetchUser(userId));
 };
 

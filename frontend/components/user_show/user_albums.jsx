@@ -1,16 +1,17 @@
 import React from 'react';
 import UserAlbum from './user_album';
+import { withRouter } from 'react-router';
 
-export default class UserAlbums extends React.Component {
+class UserAlbums extends React.Component {
 
   constructor(props) {
     super(props);
-    this.albumView = this.albumView.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  albumView(idx) {
+  handleClick(albumId) {
     return (e) => {
-
+      this.props.router.push(`/users/${this.props.userId}/albums/${albumId}`);
     };
   }
 
@@ -18,9 +19,9 @@ export default class UserAlbums extends React.Component {
     const userAlbums = this.props.albums.map((album, idx) => {
       return <UserAlbum key={ album.id }
                         title={ album.title }
-                        albumView={ this.albumView(idx) }
                         coverPhotoUrl={ album.photos[0].image_url }
-                        numPhotos={ album.photos.length } />;
+                        numPhotos={ album.photos.length }
+                        handleClick={ this.handleClick(album.id)} />;
     });
 
     return (
@@ -30,3 +31,5 @@ export default class UserAlbums extends React.Component {
     );
   }
 }
+
+export default withRouter(UserAlbums);

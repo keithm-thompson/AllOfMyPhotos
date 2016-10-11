@@ -1,0 +1,83 @@
+.album-cover-image-container {
+  background-color: #000;
+  background-size: cover;
+  background-position: 50%;
+  color: #fff;
+  text-shadow: 0 1px 1px #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  align-items: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 300px;
+  margin-top: 100px;
+  margin-bottom: 35px;
+  padding: 0 10px 5px;
+}
+
+.background-dim {
+  position: absolute;
+  top: 127px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0 auto;
+  background: rgba(0,0,0,.6);
+  z-index: 300;
+  height: 305px;
+  width: 82%;
+}
+
+.album-view-container{
+  min-width: 800px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 130px;
+  padding-right: 130px;
+}
+
+.back-to-album {
+  margin-left: 5px;
+  position: relative;
+  top: 73px;
+  color: #212124;
+  vertical-align: super;
+}
+
+.album-view-container h1 {
+  font-size: 40px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.album-view-container li {
+  margin-right: 5px;
+}
+
+.album-view-container * {
+  z-index: 400;
+}
+
+.album-view-container p {
+  margin-top: 13px;
+  font-size: 24px;
+}
+
+.album-view-container h6 {
+  font-size: 14px;
+  margin-top: 5px;
+}

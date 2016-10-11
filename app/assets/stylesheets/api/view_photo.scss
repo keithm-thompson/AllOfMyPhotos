@@ -14,6 +14,8 @@
   color: #fff;
   font-size: 25px;
   top: 25px;
+  display: none;
+  align-items: center;
 }
 
 .view-photo-user:hover {
@@ -47,7 +49,8 @@
 .arrow {
   color: #fff;
   font-size: 60px !important;
-  display: flex;
+  // display: flex;
+  display: none !important;
   align-self: center;
   position: absolute;
 }
@@ -55,7 +58,8 @@
 .delete {
   color: #fff;
   font-size: 40px !important;
-  display: flex;
+  // display: flex;
+  display: none !important;
   align-self: center;
   position: absolute;
   bottom: 75px;
@@ -77,4 +81,8 @@
 .arrow:hover{
   cursor: pointer;
   opacity: .7;
+}
+
+.on-move {
+  display: flex !important;
 }

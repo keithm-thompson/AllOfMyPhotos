@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
+import classNames from 'classnames';
 
 class ViewPhoto extends React.Component {
 
   constructor(props){
     super(props);
 
-    this.state = { idx: -1 };
+    this.state = { idx: -1, mouseIdle: true };
     this.handleNav = this.handleNav.bind(this);
     this.deletePhoto = this.deletePhoto.bind(this);
+    this.showActions = this.showActions.bind(this);
   }
 
   handleNav(num) {
@@ -22,7 +24,7 @@ class ViewPhoto extends React.Component {
     this.props.deletePhoto(this.props.photos[this.state.idx].id);
     // add promise
     let index = this.state.idx;
-    
+
     if (index > 0) {
       this.setState({ idx: --index});
     } else if (index < this.props.photos.length) {
@@ -30,6 +32,14 @@ class ViewPhoto extends React.Component {
     } else {
       this.props.router.push(`/users/${this.props.userProperties.id}`);
     }
+  }
+
+  showActions(){
+    this.setState({mouseIdle: false});
+    window.clearTimeout(this.setTimeout);
+    this.setTimeout = setTimeout(()=>{
+      this.setState({mouseIdle: true});
+    }, 2000);
   }
 
 
@@ -50,17 +60,69 @@ class ViewPhoto extends React.Component {
   }
 
   render() {
+    let userInfoClass, prevButtonClass, nextButtonClass, deleteButtonClass;
+
+    if (this.state.mouseIdle) {
+
+      userInfoClass = classNames({
+        'view-photo-user': true
+      });
+
+      prevButtonClass = classNames({
+        'material-icons': true,
+        'arrow': true,
+        'left-arrow': true
+      });
+
+      nextButtonClass = classNames({
+        'material-icons': true,
+        'arrow': true,
+        'right-arrow': true
+      });
+
+      deleteButtonClass= classNames({
+        'material-icons': true,
+        'delete': true,
+
+      });
+    } else {
+      userInfoClass = classNames({
+        'view-photo-user': true,
+        'on-move': true
+      });
+
+      prevButtonClass = classNames({
+        'material-icons': true,
+        'arrow': true,
+        'left-arrow': true,
+        'on-move': true
+      });
+
+      nextButtonClass = classNames({
+        'material-icons': true,
+        'arrow': true,
+        'right-arrow': true,
+        'on-move': true
+      });
+
+      deleteButtonClass= classNames({
+        'material-icons': true,
+        'delete': true,
+        'on-move': true
+      });
+    }
+
     if (this.state.idx >= 0) {
       let prevButton, nextButton;
       if (this.state.idx > 0) {
-        prevButton = <i className="material-icons arrow left-arrow" onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
+        prevButton = <i className={ prevButtonClass } onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
       }
       if (this.state.idx < this.props.photos.length-1) {
-        nextButton = <i className="material-icons arrow right-arrow" onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
+        nextButton = <i className={ nextButtonClass } onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
       }
       return(
-        <div className="view-photo-container">
-          <div className="view-photo-user">
+        <div className="view-photo-container" onMouseMove={this.showActions}>
+          <div className={ userInfoClass }>
             <img src={ this.props.userProperties.image_url } className="user-icon"></img>
             <Link to={ `/users/${ this.props.userProperties.id }` }
               >{ this.props.userProperties.username }</Link>
@@ -69,7 +131,7 @@ class ViewPhoto extends React.Component {
           <div className="view-photo-div">
             <img src={ this.props.photos[this.state.idx].image_url } className="photo"></img>
           </div>
-          <i className="material-icons delete" onClick={this.deletePhoto}>delete_forever</i>
+          <i className={ deleteButtonClass } onClick={this.deletePhoto}>delete_forever</i>
           { nextButton }
         </div>
       );

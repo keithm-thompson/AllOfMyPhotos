@@ -52,7 +52,7 @@ if Rails.env.development?
   keith_one = Photo.create!(image: open("app/assets/images/keith-one.jpeg"),title: Faker::Hipster.sentence, user_id: keith.id)
 
 
-  file = File.open('app/seed_photo_data.txt', 'w')
+  file = open('app/seed_photo_data.txt', 'w')
     Photo.all.each do |photo|
       file << photo.image.url + "\n"
     end
@@ -61,38 +61,38 @@ if Rails.env.development?
 ## TEST FOR RAILS ENV
 else
 
-  file = File.open('app/seed_photo_data.txt', 'r')
+  file = open('app/seed_photo_data.txt', 'r')
 
 
-  danielle_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)
-  sennacy_four = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: sennacy.id)
-  keith_four = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: keith.id)
-  luna_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: luna.id)
-  danielle_two = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)
-  keith_two = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: keith.id)
-  maurice_five = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: maurice.id)
-  luna_three = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: luna.id)
-  sennacy_three = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: sennacy.id)
-  luna_four = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: luna.id)
-  sennacy_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: sennacy.id)
-  keith_five = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: keith.id)
-  maurice_three = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: maurice.id)
-  keith_three = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: keith.id)
-  maurice_four = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: maurice.id)
-  danielle_three = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)
-  maurice_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: maurice.id)
-  danielle_five = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)
-  luna_two = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: luna.id)
-  sennacy_two = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: sennacy.id)
-  danielle_four = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)
-  sennacy_five = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: sennacy.id)
-  maurice_two = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: maurice.id)
-  luna_five = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: luna.id)
-  keith_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: keith.id)
+  danielle_one = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: danielle.id)
+  sennacy_four = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: sennacy.id)
+  keith_four = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: keith.id)
+  luna_one = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: luna.id)
+  danielle_two = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: danielle.id)
+  keith_two = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: keith.id)
+  maurice_five = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: maurice.id)
+  luna_three = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: luna.id)
+  sennacy_three = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: sennacy.id)
+  luna_four = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: luna.id)
+  sennacy_one = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: sennacy.id)
+  keith_five = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: keith.id)
+  maurice_three = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: maurice.id)
+  keith_three = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: keith.id)
+  maurice_four = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: maurice.id)
+  danielle_three = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: danielle.id)
+  maurice_one = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: maurice.id)
+  danielle_five = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: danielle.id)
+  luna_two = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: luna.id)
+  sennacy_two = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: sennacy.id)
+  danielle_four = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: danielle.id)
+  sennacy_five = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: sennacy.id)
+  maurice_two = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: maurice.id)
+  luna_five = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: luna.id)
+  keith_one = Photo.create!(image: open((file.readline).split("\n")[0]),title: Faker::Hipster.sentence, user_id: keith.id)
 
   file.close
 
-end
+# end
 
 
 Album.destroy_all

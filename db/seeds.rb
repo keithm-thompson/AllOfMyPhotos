@@ -92,7 +92,7 @@ else
 
   file.close
 
-# end
+end
 
 
 Album.destroy_all

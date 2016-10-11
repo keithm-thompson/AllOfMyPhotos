@@ -93,14 +93,13 @@ class Header extends React.Component {
         <nav className="group">
           <Link to="#" key={"logo"} className="header-logo">AllOfMyPhotos</Link>
           <div className="link-to-user">
-              <Link to={`/users/${this.props.currentUser.id}`} className="">You</Link>
-              <ul className="menu">
-                <Link to="#" className="link">Upload Photos</Link>
-                <Link to="#" className="link">View Your Photos</Link>
-                <Link to="#" className="link">View Your Albums</Link>
-              </ul>
-
-        </div>
+            <Link to={`/users/${this.props.currentUser.id}`} className="">You</Link>
+            <ul className="menu">
+              <Link to={`/users/${this.props.currentUser.id}/upload`} className="link">Upload Photos</Link>
+              <Link to={`/users/${this.props.currentUser.id}`} className="link">View Your Photos</Link>
+              <Link to={`/users/${this.props.currentUser.id}/albums`} className="link">View Your Albums</Link>
+            </ul>
+          </div>
           <ul>
             <li>
               <form className="search " onSubmit={this.handleSearch} >

@@ -1,4 +1,3 @@
-
 User.destroy_all
 
 keith = User.create!(username: "keith", password: "starwars")
@@ -51,14 +50,12 @@ if Rails.env.development?
   luna_five = Photo.create!(image: open("app/assets/images/luna-five.jpeg"),title: Faker::Hipster.sentence, user_id: luna.id)
   keith_one = Photo.create!(image: open("app/assets/images/keith-one.jpeg"),title: Faker::Hipster.sentence, user_id: keith.id)
 
-
   file = open('app/seed_photo_data.txt', 'w')
     Photo.all.each do |photo|
       file << photo.image.url + "\n"
     end
   file.close
 
-## TEST FOR RAILS ENV
 else
 
   file = open('app/seed_photo_data.txt', 'r')

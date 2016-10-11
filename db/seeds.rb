@@ -61,7 +61,7 @@ if Rails.env.development?
 ## TEST FOR RAILS ENV
 else
 
-  file = File.open('docs/seedPhotoData.txt', 'r')
+  file = File.open('docs/seed_photo_data.txt', 'r')
 
 
   danielle_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)

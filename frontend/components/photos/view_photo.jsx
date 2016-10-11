@@ -39,7 +39,58 @@ class ViewPhoto extends React.Component {
     window.clearTimeout(this.setTimeout);
     this.setTimeout = setTimeout(()=>{
       this.setState({mouseIdle: true});
-    }, 2000);
+    }, 1300);
+  }
+
+  hideActionsClasses(){
+    this.userInfoClass = classNames({
+      'view-photo-user': true
+    });
+
+    this.prevButtonClass = classNames({
+      'material-icons': true,
+      'arrow': true,
+      'left-arrow': true
+    });
+
+    this.nextButtonClass = classNames({
+      'material-icons': true,
+      'arrow': true,
+      'right-arrow': true
+    });
+
+    this.deleteButtonClass= classNames({
+      'material-icons': true,
+      'delete': true,
+
+    });
+  }
+
+  showActionsClasses(){
+    this.userInfoClass = classNames({
+      'view-photo-user': true,
+      'on-move': true
+    });
+
+    this.prevButtonClass = classNames({
+      'material-icons': true,
+      'arrow': true,
+      'left-arrow': true,
+      'on-move': true
+    });
+
+    this.nextButtonClass = classNames({
+      'material-icons': true,
+      'arrow': true,
+      'right-arrow': true,
+      'on-move': true
+    });
+
+    this.deleteButtonClass= classNames({
+      'material-icons': true,
+      'delete': true,
+      'on-move': true
+    });
   }
 
 
@@ -60,69 +111,25 @@ class ViewPhoto extends React.Component {
   }
 
   render() {
-    let userInfoClass, prevButtonClass, nextButtonClass, deleteButtonClass;
+
 
     if (this.state.mouseIdle) {
-
-      userInfoClass = classNames({
-        'view-photo-user': true
-      });
-
-      prevButtonClass = classNames({
-        'material-icons': true,
-        'arrow': true,
-        'left-arrow': true
-      });
-
-      nextButtonClass = classNames({
-        'material-icons': true,
-        'arrow': true,
-        'right-arrow': true
-      });
-
-      deleteButtonClass= classNames({
-        'material-icons': true,
-        'delete': true,
-
-      });
+      this.hideActionsClasses();
     } else {
-      userInfoClass = classNames({
-        'view-photo-user': true,
-        'on-move': true
-      });
-
-      prevButtonClass = classNames({
-        'material-icons': true,
-        'arrow': true,
-        'left-arrow': true,
-        'on-move': true
-      });
-
-      nextButtonClass = classNames({
-        'material-icons': true,
-        'arrow': true,
-        'right-arrow': true,
-        'on-move': true
-      });
-
-      deleteButtonClass= classNames({
-        'material-icons': true,
-        'delete': true,
-        'on-move': true
-      });
+      this.showActionsClasses();
     }
 
     if (this.state.idx >= 0) {
       let prevButton, nextButton;
       if (this.state.idx > 0) {
-        prevButton = <i className={ prevButtonClass } onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
+        prevButton = <i className={ this.prevButtonClass } onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
       }
       if (this.state.idx < this.props.photos.length-1) {
-        nextButton = <i className={ nextButtonClass } onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
+        nextButton = <i className={ this.nextButtonClass } onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
       }
       return(
         <div className="view-photo-container" onMouseMove={this.showActions}>
-          <div className={ userInfoClass }>
+          <div className={ this.userInfoClass }>
             <img src={ this.props.userProperties.image_url } className="user-icon"></img>
             <Link to={ `/users/${ this.props.userProperties.id }` }
               >{ this.props.userProperties.username }</Link>
@@ -131,7 +138,7 @@ class ViewPhoto extends React.Component {
           <div className="view-photo-div">
             <img src={ this.props.photos[this.state.idx].image_url } className="photo"></img>
           </div>
-          <i className={ deleteButtonClass } onClick={this.deletePhoto}>delete_forever</i>
+          <i className={ this.deleteButtonClass } onClick={this.deletePhoto}>delete_forever</i>
           { nextButton }
         </div>
       );

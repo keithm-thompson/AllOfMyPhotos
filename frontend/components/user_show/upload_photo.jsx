@@ -44,7 +44,7 @@ export default class UploadPhoto extends React.Component {
           <div className="upload-photo-text">
             <h3>Upload all of your photos! We have the space.</h3>
             <label htmlFor="file" className="signup-style">Upload a file!</label>
-            <input className="inputfile" type="file" onChange={ this.updateFile } ></input>
+            <input className="inputfile" type="file" id="file" onChange={ this.updateFile } ></input>
           </div>
       </form>
     );

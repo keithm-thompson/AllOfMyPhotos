@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
-export default class ViewPhoto extends React.Component {
+class ViewPhoto extends React.Component {
 
   constructor(props){
     super(props);
 
     this.state = { idx: -1 };
     this.handleNav = this.handleNav.bind(this);
+    this.deletePhoto = this.deletePhoto.bind(this);
   }
 
   handleNav(num) {
@@ -15,6 +16,20 @@ export default class ViewPhoto extends React.Component {
       let currentIdx = this.state.idx;
       this.setState({ idx: currentIdx += num });
     };
+  }
+
+  deletePhoto() {
+    this.props.deletePhoto(this.props.photos[this.state.idx].id);
+    // add promise
+    let index = this.state.idx;
+    
+    if (index > 0) {
+      this.setState({ idx: --index});
+    } else if (index < this.props.photos.length) {
+      this.setState({ idx: ++index});
+    } else {
+      this.props.router.push(`/users/${this.props.userProperties.id}`);
+    }
   }
 
 
@@ -40,7 +55,7 @@ export default class ViewPhoto extends React.Component {
       if (this.state.idx > 0) {
         prevButton = <i className="material-icons arrow left-arrow" onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
       }
-      if (this.state.idx < this.props.photos.length) {
+      if (this.state.idx < this.props.photos.length-1) {
         nextButton = <i className="material-icons arrow right-arrow" onClick={ this.handleNav(1) }>keyboard_arrow_right</i>;
       }
       return(
@@ -54,6 +69,7 @@ export default class ViewPhoto extends React.Component {
           <div className="view-photo-div">
             <img src={ this.props.photos[this.state.idx].image_url } className="photo"></img>
           </div>
+          <i className="material-icons delete" onClick={this.deletePhoto}>delete_forever</i>
           { nextButton }
         </div>
       );
@@ -62,3 +78,4 @@ export default class ViewPhoto extends React.Component {
     }
   }
 }
+export default withRouter(ViewPhoto);

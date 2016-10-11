@@ -61,16 +61,12 @@
   z-index: 1;
   min-width: 800px;
   width: 100%;
-  // height: 35vh;
   margin-left: auto;
   margin-right: auto;
-  // padding-left: 130px;
-  // padding-right: 130px;
   opacity: 1;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  // align-items: center;
   font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
 }
 
@@ -86,4 +82,8 @@
 .upload-photo-text label {
   color: white;
   padding: 15px 20px;
+}
+
+.upload-photo-text label:hover {
+  cursor: pointer;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ViewPhoto from './view_photo';
 import { fetchUser } from '../../actions/user_actions';
+import { deletePhoto } from '../../actions/photo_actions';
 
 
 const mapStateToProps = (state) => ({
@@ -10,7 +11,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (userId) => dispatch(fetchUser(userId))
+  fetchUser: (userId) => dispatch(fetchUser(userId)),
+  deletePhoto: (photoId) => dispatch(deletePhoto(photoId))
 });
 
 export default connect(

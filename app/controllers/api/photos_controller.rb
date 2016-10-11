@@ -77,7 +77,7 @@ class Api::PhotosController < ApplicationController
 
   end
 
-  def delete
+  def destroy
     @photo = Photo.find(params[:id])
     if @photo
       @photo.destroy!

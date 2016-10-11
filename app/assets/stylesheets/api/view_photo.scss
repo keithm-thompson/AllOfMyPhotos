@@ -52,6 +52,21 @@
   position: absolute;
 }
 
+.delete {
+  color: #fff;
+  font-size: 40px !important;
+  display: flex;
+  align-self: center;
+  position: absolute;
+  bottom: 75px;
+  right: 100px;
+}
+
+.delete:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
 .right-arrow {
   right: 0;
 }

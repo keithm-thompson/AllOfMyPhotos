@@ -52,7 +52,7 @@ if Rails.env.development?
   keith_one = Photo.create!(image: open("app/assets/images/keith-one.jpeg"),title: Faker::Hipster.sentence, user_id: keith.id)
 
 
-  file = File.open('docs/seed_photo_data.txt', 'w')
+  file = File.open('app/seed_photo_data.txt', 'w')
     Photo.all.each do |photo|
       file << photo.image.url + '\n'
     end
@@ -61,7 +61,7 @@ if Rails.env.development?
 ## TEST FOR RAILS ENV
 else
 
-  file = File.open('docs/seed_photo_data.txt', 'r')
+  file = File.open('app/seed_photo_data.txt', 'r')
 
 
   danielle_one = Photo.create!(image: File.open(file.readline),title: Faker::Hipster.sentence, user_id: danielle.id)

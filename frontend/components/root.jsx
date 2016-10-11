@@ -10,6 +10,7 @@ import UploadPhotoFormContainer from './user_show/upload_photo_container';
 import UserAlbumsContainer from './user_show/user_albums_container';
 import ViewPhotoContainer from './photos/view_photo_container';
 import ViewAlbumContainer from './albums/view_album_container';
+import CreateAlbumContainer from './albums/create_album_container';
 import { searchUsers } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -24,6 +25,7 @@ const Root = ({ store }) => (
           <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState} ></Route>
           <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser }></Route>
           <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser }></Route>
+          <Route path="/users/:user_id/createalbum" component={ CreateAlbumContainer } onEnter={ getUser }></Route>
           <Route path="users/:user_id" component={ UserShowContainer } onEnter={ getUser }>
             <IndexRoute component={ UserPhotosContainer } />
             <Route path="upload" component={ UploadPhotoFormContainer }></Route>

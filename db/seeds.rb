@@ -54,7 +54,7 @@ if Rails.env.development?
 
   file = File.open('app/seed_photo_data.txt', 'w')
     Photo.all.each do |photo|
-      file << photo.image.url + '\n'
+      file << photo.image.url + "\n"
     end
   file.close
 

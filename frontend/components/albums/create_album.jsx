@@ -67,7 +67,7 @@ class CreateAlbum extends React.Component {
 
         if(i > 0 && i % 4  === 0 || i === this.props.photos.length-1) {
           rowsOfPhotos.push(
-            <ul className="user-photos-container" key={i}>
+            <ul key={i}>
               { photos }
             </ul>
           );
@@ -75,24 +75,40 @@ class CreateAlbum extends React.Component {
         }
       }
     }
-
+    // let title = "Enter Title",
+    // description = "Enter Description (optional)";
+    // if (this.state.title.length > 0) {
+    //   title = this.state.title;
+    // }
+    // if (this.state.description.length > 0) {
+    //   description = this.state.description;
+    // }
     return(
-      <div className="create-album-container">
-        <form className="create-album-info">
-          <h4>{ this.state.errors[0] }</h4>
-          <input
-            type="text"
-            placeholder="Enter Title"
-            value={ this.state.title }
-            onChange={ this.handleInput("title") }></input>
-          <textarea
-            placeholder="Enter Description (optional)"
-            value={ this.state.description }
-            onChange={ this.handleInput("description") }></textarea>
-          <button onClick={this.handleSubmit}>Submit</button>
-        </form>
-        <h3>Select Photos to Add To This Album!</h3>
-        { rowsOfPhotos }
+      <div className="create-album-page">
+        <div className="create-album-container">
+          <form className="create-album-info">
+            <h4>{ this.state.errors[0] }</h4>
+            <div className="create-album-input">
+              <input
+                type="text"
+                placeholder="Enter Title"
+                value={this.state.title}
+                onChange={ this.handleInput("title") }
+                className="create-album-title"></input>
+              <textarea
+                placeholder="Enter Description (optional)"
+                value={ this.state.description }
+                onChange={ this.handleInput("description") }
+                className="create-album-desc"></textarea>
+            </div>
+            <button onClick={this.handleSubmit}
+              className="button signup-style">Submit</button>
+          </form>
+          <header className="create-album-content-split">Select Photos To Add To This Album!</header>
+          // <div className="photos-to-choose-from">
+            { rowsOfPhotos }
+          </div>
+        </div>
       </div>
     );
   }

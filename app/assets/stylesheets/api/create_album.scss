@@ -1,0 +1,31 @@
+.create-album-container {
+  position: absolute;
+  top: 50px;
+  min-width: 800px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 130px;
+  padding-right: 130px;
+}
+
+.create-album-info {
+  display: flex;
+  flex-wrap: wrap;
+    //change to background image
+  margin-bottom: 50px;
+  padding: 50px;
+  justify-content: center;
+  height: 200px;
+  background-image: image-url("album-background.jpg");
+  opacity: .5;
+
+  // background: #495C70;
+}
+
+.create-album-info * {
+  // height: 100px;
+  z-index: 1;
+  opacity: 1;
+  width: 100%;
+}

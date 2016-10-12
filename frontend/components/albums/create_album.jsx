@@ -40,7 +40,8 @@ class CreateAlbum extends React.Component {
     };
   }
 
-  handleSubmit(){
+  handleSubmit(e){
+    e.preventDefault();
     if (this.state.title.length === 0) {
       this.setState({ errors: ["Albums must have titles."] });
     } else if (Object.keys(this.state.selectedPhotos).length === 0) {
@@ -76,8 +77,8 @@ class CreateAlbum extends React.Component {
     }
 
     return(
-      <div>
-        <form>
+      <div className="create-album-container">
+        <form className="create-album-info">
           <h4>{ this.state.errors[0] }</h4>
           <input
             type="text"
@@ -89,8 +90,9 @@ class CreateAlbum extends React.Component {
             value={ this.state.description }
             onChange={ this.handleInput("description") }></textarea>
           <button onClick={this.handleSubmit}>Submit</button>
-          { rowsOfPhotos }
         </form>
+        <h3>Select Photos to Add To This Album!</h3>
+        { rowsOfPhotos }
       </div>
     );
   }

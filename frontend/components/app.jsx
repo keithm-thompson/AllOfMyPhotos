@@ -4,10 +4,12 @@ import Footer from './footer/footer';
 
 const App = ({ children }) => {
   return(
-  <div className="app-container">
+  <div className="app-container" id="wrapper">
     <HeaderContainer />
-      { children }
-    <Footer />
+      <div id="content" >
+        { children }
+      </div>
+    <Footer id="footer" route={children.props.route}/>
   </div>
 )};
 export default App;

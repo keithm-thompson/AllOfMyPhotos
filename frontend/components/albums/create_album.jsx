@@ -105,8 +105,10 @@ class CreateAlbum extends React.Component {
               className="button signup-style">Submit</button>
           </form>
           <header className="create-album-content-split">Select Photos To Add To This Album!</header>
-          // <div className="photos-to-choose-from">
-            { rowsOfPhotos }
+          <div className="photos-to-choose-from-container">
+            <div className="photos-to-choose-from">
+              { rowsOfPhotos }
+            </div>
           </div>
         </div>
       </div>

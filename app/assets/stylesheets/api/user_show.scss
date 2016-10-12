@@ -64,6 +64,7 @@
   box-shadow: inset 0 -2px transparent;
   border-bottom: 1px solid #ccc;
 }
+
 .user-show-link {
   font-size: 16px;
   padding-left: 20px;
@@ -80,7 +81,6 @@
   box-sizing: border-box;
   height: 50px;
 }
-
 
 .user-show-nav-bar ul {
   margin-left: 130px;
@@ -100,16 +100,6 @@
   opacity: 1;
   background: linear-gradient(0deg,rgba(0,0,0,.9) 0,transparent 50%,transparent);
 }
-
-// .user-album-container:before {
-//   content: "";
-//   position: absolute;
-//   left: 168px;
-//   bottom: -8px;
-//   height: 1px;
-//   width: 20%;
-//   border-bottom: 1px solid #aaa;
-// }
 
 .album-look {
 

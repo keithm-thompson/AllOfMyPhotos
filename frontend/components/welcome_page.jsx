@@ -4,10 +4,12 @@ import SplashPage from './welcome/splash_page';
 import Footer from './footer/footer';
 
 const WelcomePage = () => (
-  <div>
+  <div  id="wrapper">
     <HeaderContainer />
-    <SplashPage />
-    <Footer />
+    <div id="content">
+      <SplashPage />
+    </div>
+    <Footer  id="footer"/>
   </div>
 );
 export default WelcomePage;

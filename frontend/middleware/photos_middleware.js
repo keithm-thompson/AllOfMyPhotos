@@ -3,7 +3,9 @@ import {
   fetchFullFeedPhotos,
   fetchUserPhotos,
   uploadPhoto,
-  deletePhoto
+  deletePhoto,
+  addTagToPhoto,
+  removeTagFromPhoto
 } from '../util/photos_api_util';
 
 import {
@@ -11,11 +13,14 @@ import {
   receivePhotos,
   removePhoto,
   receiveFeedPhotos,
+  updatePhoto,
   FETCH_INITIAL_FEED,
   FETCH_FULL_FEED,
   FETCH_PHOTOS,
   UPLOAD_PHOTO,
-  DELETE_PHOTO
+  DELETE_PHOTO,
+  ADD_TAG_TO_PHOTO,
+  REMOVE_TAG_FROM_PHOTO
 } from '../actions/photo_actions';
 
 
@@ -47,6 +52,16 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
     case DELETE_PHOTO:
       success = (photo) => dispatch(removePhoto(photo));
       deletePhoto(action.photoId, success, error);
+      return next(action);
+
+    case ADD_TAG_TO_PHOTO:
+      success = (photo) => dispatch(updatePhoto(photo));
+      addTagToPhoto(action.photoId, action.tag_name, success, error);
+      return next(action);
+
+    case REMOVE_TAG_FROM_PHOTO:
+      success = (photo) => dispatch(updatePhoto(photo));
+      removeTagFromPhoto(action.photoId, action.tagId, success, error);
       return next(action);
 
     default:

@@ -7,6 +7,9 @@ export const REMOVE_PHOTO = "REMOVE_PHOTO";
 export const FETCH_INITIAL_FEED = "FETCH_INITIAL_FEED";
 export const FETCH_FULL_FEED = "FETCH_FULL_FEED";
 export const FETCH_PHOTOS = "FETCH_PHOTOS";
+export const ADD_TAG_TO_PHOTO = "ADD_TAG_TO_PHOTO";
+export const REMOVE_TAG_FROM_PHOTO = "REMOVE_TAG_FROM_PHOTO";
+export const UPDATE_PHOTO = "UPDATE_PHOTO";
 
 export const uploadPhoto = (photo) => ({
   type: UPLOAD_PHOTO,
@@ -49,4 +52,21 @@ export const fetchFullFeed = () => ({
 export const fetchPhotos = (userId) => ({
   type: FETCH_PHOTOS,
   userId
+});
+
+export const addTagToPhoto = (photoId, tag_name) => ({
+  type: ADD_TAG_TO_PHOTO,
+  photoId,
+  tag_name
+});
+
+export const removeTagFromPhoto = (photoId, tagId) => ({
+  type: REMOVE_TAG_FROM_PHOTO,
+  photoId,
+  tagId
+});
+
+export const updatePhoto = (photo) => ({
+  type: UPDATE_PHOTO,
+  photo
 });

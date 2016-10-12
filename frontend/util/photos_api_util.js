@@ -47,3 +47,22 @@ export const fetchUserPhotos = (userId, success, error) => (
     error
   })
 );
+
+export const addTagToPhoto = (photoId, tag_name, success, error) => (
+  $.ajax({
+    method: 'POST',
+    url: `api/photos/${photoId}/add_tag`,
+    data: { photo: tag_name },
+    success,
+    error
+  })
+);
+
+export const removeTagFromPhoto = (photoId, tagId, success, error) => (
+  $.ajax({
+    method:'DELETE',
+    url: `api/photos/${photoId}/tags/${tagId}`,
+    success,
+    error
+  })
+);

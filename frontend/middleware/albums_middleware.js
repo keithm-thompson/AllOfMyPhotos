@@ -3,6 +3,7 @@ import {
   DELETE_ALBUM,
   CREATE_ALBUM_PHOTO_RELATIONSHIP,
   DELETE_ALBUM_PHOTO_RELATIONSHIP,
+  createAlbumPhotoRelationship,
   receiveAlbum,
   removeAlbum,
   addPhotoToAlbumInState,
@@ -22,7 +23,12 @@ const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
 
   switch (action.type) {
     case CREATE_ALBUM:
-      success = (album) => dispatch(receiveAlbum(album));
+      success = (album) => {
+        dispatch(receiveAlbum(album));
+        action.photoIds.forEach((photoId) => {
+          dispatch(createAlbumPhotoRelationship(album.id, photoId));
+        });
+      };
       createAlbum(action.album, success, error);
       return next(action);
 

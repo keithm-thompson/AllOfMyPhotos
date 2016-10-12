@@ -1,14 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CreateAlbum from './create_album';
-import { createAlbum } from '../../actions/album_actions';
+import {
+  createAlbum,
+  createAlbumPhotoRelationship
+} from '../../actions/album_actions';
 
 const mapStateToProps = (state) => ({
-  photos: state.user.photos
+  photos: state.user.photos,
+  userId: state.user.properties.id
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createAlbum: (album) => dispatch(createAlbum(album))
+  createAlbum: (album) => dispatch(createAlbum(album)),
+  createAlbumPhotoRelationship: (albumId, photoId) => dispatch(createAlbumPhotoRelationship(albumId, photoId))
 });
 
 export default connect(

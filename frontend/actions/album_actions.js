@@ -8,9 +8,10 @@ export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 export const RECEIVE_ONE_ALBUM = "RECEIVE_ONE_ALBUM";
 export const REMOVE_ALBUM = "REMOVE_ALBUM";
 
-export const createAlbum = (album) => ({
+export const createAlbum = (album, photoIds) => ({
   type: CREATE_ALBUM,
-  album
+  album,
+  photoIds
 });
 
 export const deleteAlbum = (albumId) => ({

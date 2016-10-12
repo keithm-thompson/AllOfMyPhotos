@@ -9,7 +9,8 @@ class CreateAlbum extends React.Component {
     this.state= ({
       title: "",
       description: "",
-      selectedPhotos: {}
+      selectedPhotos: {},
+      errors: []
     });
 
     this.handleInput =  this.handleInput.bind(this);
@@ -29,7 +30,7 @@ class CreateAlbum extends React.Component {
 
   handleClick(photoId){
     return () => {
-      duppedState = merge({}, this.state.selectedPhotos);
+      let duppedState = merge({}, this.state.selectedPhotos);
       if (this.state.selectedPhotos.photoId){
         delete duppedState.photoId;
       } else {
@@ -40,7 +41,17 @@ class CreateAlbum extends React.Component {
   }
 
   handleSubmit(){
-
+    if (this.state.title.length === 0) {
+      this.setState({ errors: ["Albums must have titles."] });
+    } else if (Object.keys(this.state.selectedPhotos).length === 0) {
+      this.setState({ errors: ["You must select at least one photo to add to the album."] });
+    } else {
+      this.props.createAlbum({
+        title: this.state.title,
+        description: this.state.description
+      }, Object.keys(this.state.selectedPhotos));
+      this.props.router.push(`/users/${this.props.userId}/albums`);
+    }
   }
 
   render() {
@@ -67,6 +78,7 @@ class CreateAlbum extends React.Component {
     return(
       <div>
         <form>
+          <h4>{ this.state.errors[0] }</h4>
           <input
             type="text"
             placeholder="Enter Title"

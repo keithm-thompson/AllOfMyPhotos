@@ -7,7 +7,7 @@ class ViewPhoto extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = { idx: -1, mouseIdle: true };
+    this.state = { idx: -1, mouseIdle: true, zoomedIn: false };
     this.handleNav = this.handleNav.bind(this);
     this.deletePhoto = this.deletePhoto.bind(this);
     this.showActions = this.showActions.bind(this);

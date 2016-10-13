@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :albums, only: [:create, :destroy]
     get 'users/:id', to: 'users#show'
     get 'search', to: 'users#search'
+    get 'search/photos', to: 'photos#search'
     get 'initial_feed', to: 'photos#initial_feed'
     get 'full_feed', to: 'photos#full_feed'
     post 'photos/:id/add_tag', to: 'photos#add_tag_to_photo'

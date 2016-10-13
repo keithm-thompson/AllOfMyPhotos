@@ -21,14 +21,14 @@ const SearchMiddleware = ({ getState, dispatch }) => (next) => (action) => {
       success = (users) => {
         action.callback();
         return dispatch(receiveUsersSearchResults(users));
-      }
+      };
       error = (e) => console.log(e);
       fetchUserSearchResults(action.username, success, error);
       return next(action);
     case SEARCH_PHOTOS:
-      success = (photos) => dispatch(receivePhotosSearchResults(photots));
+      success = (photos) => dispatch(receivePhotosSearchResults(photos));
       error = (e) => console.log(e);
-      fetchPhotoSearchResults(action.photos, succes, error);
+      fetchPhotoSearchResults(action.tagName, success, error);
       return next(action);
     default:
       return next(action);

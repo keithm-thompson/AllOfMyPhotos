@@ -76,6 +76,19 @@ class Api::PhotosController < ApplicationController
     end
   end
 
+  def search
+    tag = Tag.find_by(tag_name: params[:tag_name])
+    if tag
+      @photos = tag.photos
+      render "api/photos/feed"
+    else
+      render(
+        json: [],
+        status: 200
+      )
+    end
+  end
+
   def add_tag_to_photo
     @photo = Photo.find(params[:id])
     if @photo

@@ -9,9 +9,9 @@ export const searchUsers = (username, callback) => ({
   callback
 });
 
-export const searchPhotos = (tag) => ({
+export const searchPhotos = (tagName) => ({
   type: SEARCH_PHOTOS,
-  tag
+  tagName
 });
 
 export const receiveUsersSearchResults = (users) => ({

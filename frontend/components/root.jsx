@@ -22,7 +22,8 @@ const Root = ({ store }) => (
         <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfLoggedIn } />
         <Route path="/" component={App} onEnter={ _ensureLoggedIn }>
           <IndexRoute component={FeedContainer} onEnter={ getInitialFeed } />
-          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState} ></Route>
+          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState } ></Route>
+          <Route path="search/photos" component={ SearchPageContainer } onEnter={ checkSearchInState } ></Route>
           <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser }></Route>
           <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser }></Route>
           <Route path="/users/:user_id/createalbum" component={ CreateAlbumContainer } onEnter={ getUser }></Route>
@@ -51,7 +52,7 @@ const _ensureLoggedIn = (nextState, replace) => {
   }
 };
 
-const checkSearchInState = () => {
+const checkSearchInState = (nextState) => {
   if (store.getState().search[0] === undefined) {
     let reg = /\?(.*)&/;
     let username = window.location.hash.match(reg)[1];

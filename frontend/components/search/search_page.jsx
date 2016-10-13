@@ -43,6 +43,10 @@ export default class SearchPage extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextState) {
+    this.setState({ search: nextState.route.path });
+  }
+
   render () {
     let searchItems;
     if (this.state.search === "people") {

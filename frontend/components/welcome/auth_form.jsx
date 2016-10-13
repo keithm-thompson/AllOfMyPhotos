@@ -9,6 +9,7 @@ export default class AuthForm extends React.Component {
                   password: ""
                 };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleGuest = this.handleGuest.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -20,6 +21,27 @@ export default class AuthForm extends React.Component {
     };
     this.props.processForm(user);
     this.setState({ password: "" });
+  }
+
+  handleGuest(e) {
+    // let username = ["g", "u", "e", "s", "t"];
+    // let password = ["s", "t", "a", "r", "w", "a", "r", "s"];
+    // let usernameState;
+    // let passwordState;
+    // e.preventDefault();
+    // while (username.length > 0) {
+    //   usernameState = this.state.username + username.shift();
+    //   this.setState({username: usernameState});
+    // }
+    // while (password.length > 0) {
+    //   passwordState = this.state.password + password.shift();
+    //   this.setState({ password: passwordState });
+    // }
+    const user = {
+      username: "guest",
+      password: "starwars"
+    };
+    this.props.processForm(user);
   }
 
   renderErrors() {
@@ -55,7 +77,11 @@ export default class AuthForm extends React.Component {
   render () {
 
     const { label, buttonText, errors } = this.props;
+    let guestButton;
 
+    if( label == "Sign In!") {
+      guestButton = <button onClick={ this.handleGuest }> Sign In as guest</button>;
+    }
     return (
       <div>
         <Modal isOpen={this.props.open} className="modal-screen">
@@ -74,6 +100,7 @@ export default class AuthForm extends React.Component {
             <br></br>
             <button onClick={this.handleSubmit}> { label } </button>
             <button onClick={this.closeModal} className="">Cancel</button>
+            { guestButton }
           </form>
         </Modal>
       </div>

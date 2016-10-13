@@ -128,6 +128,7 @@
   transition: bottom .15s ease-out;
   box-sizing: border-box;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .user-album-info {
@@ -147,4 +148,15 @@
   text-shadow: 0 1px 1px #000;
   font-weight: 200;
   font-size: 14px;
+}
+
+.create-album-link {
+  position: absolute;
+  right: 35px;
+  top: 385px;
+  font-weight: 400;
+}
+
+.create-album-link:hover {
+  opacity: .7;
 }

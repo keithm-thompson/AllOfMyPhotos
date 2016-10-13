@@ -25,7 +25,6 @@ const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
     case CREATE_ALBUM:
       success = (album) => {
         dispatch(receiveOneAlbum(album));
-        debugger
         action.photoIds.forEach((photoId) => {
           dispatch(createAlbumPhotoRelationship(album.id, photoId));
         });

@@ -5,7 +5,8 @@ import { createAlbum } from '../../actions/album_actions';
 
 const mapStateToProps = (state) => ({
   albums: state.user.albums,
-  userId: state.user.properties.id
+  userId: state.user.properties.id,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

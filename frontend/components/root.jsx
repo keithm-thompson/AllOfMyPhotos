@@ -26,7 +26,7 @@ const Root = ({ store }) => (
           <Route path="search/photos" component={ SearchPageContainer } onEnter={ checkSearchInState } ></Route>
           <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser }></Route>
           <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser }></Route>
-          <Route path="/users/:user_id/createalbum" component={ CreateAlbumContainer } onEnter={ getUser }></Route>
+          <Route path="/users/:user_id/create_album" component={ CreateAlbumContainer } onEnter={ getUser }></Route>
           <Route path="users/:user_id" component={ UserShowContainer } onEnter={ getUser }>
             <IndexRoute component={ UserPhotosContainer } />
             <Route path="upload" component={ UploadPhotoFormContainer }></Route>

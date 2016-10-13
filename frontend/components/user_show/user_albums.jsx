@@ -1,6 +1,6 @@
 import React from 'react';
 import UserAlbum from './user_album';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 
 class UserAlbums extends React.Component {
 
@@ -16,6 +16,12 @@ class UserAlbums extends React.Component {
   }
 
   render() {
+    let linkToCreateAlbum;
+
+    if (this.props.userId === this.props.currentUser.id) {
+      linkToCreateAlbum = <Link to={`/users/${this.props.userId}/create_album`} className="create-album-link"> <i className="material-icons">photo_album</i> Create Album </Link>;
+    }
+
     const userAlbums = this.props.albums.map((album, idx) => {
       return <UserAlbum key={ album.id }
                         title={ album.title }
@@ -25,9 +31,12 @@ class UserAlbums extends React.Component {
     });
 
     return (
-      <ul className="user-show-content user-album-container">
-        { userAlbums }
-      </ul>
+      <div>
+        <ul className="user-show-content user-album-container">
+          { userAlbums }
+        </ul>
+        { linkToCreateAlbum }
+      </div>
     );
   }
 }

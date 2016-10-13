@@ -66,6 +66,20 @@
   right: 100px;
 }
 
+.toggle-zoom {
+  color: #fff;
+  font-size: 40px !important;
+  display: none !important;
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+}
+
+.toggle-zoom:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
 .delete:hover {
   cursor: pointer;
   opacity: .7;
@@ -78,6 +92,7 @@
 .left-arrow {
   left: 0;
 }
+
 .arrow:hover{
   cursor: pointer;
   opacity: .7;
@@ -87,24 +102,130 @@
   display: flex !important;
 }
 
+.on-move-user-info {
+  display: flex !important;
+  flex-wrap: wrap;
+  width: 40vw;
+  max-width: 400px;
+}
+
+.on-move-user-info h5 {
+  margin-left: 85px;
+  max-width: 30vh;
+  margin-top: -10px;
+  font-weight: bold;
+}
+
 .zoomed-out-container {
   height: 80vh !important;
 }
 
 .zoomed-out-photo-div {
-  max-width: 60vh !important;
+  max-width: 70vh !important;
 }
 
 .zoomed-out-photo {
-  max-height: 60vh !important;
+  max-height: 70vh !important;
 }
 
-.zoomed-out-photo {
-  left: 21vw !important;
+.zoomed-out-user-info {
+  left: 12vw !important;
   color: #000 !important;
   top: 83vh !important;
 }
 
 .zoomed-out-delete {
   bottom: 25px;
+}
+
+.photo-title {
+  font-size: 14px;
+}
+
+.uploaded-on {
+  right: 12vw !important;
+  color: #000 !important;
+  top: 85vh !important;
+  position: absolute;
+  font-size: 16px;
+  align-items: center;
+}
+
+.link-to-photos-text {
+  color: #fff;
+  top: 2vh;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 2px;
+  left: 5vw;
+}
+
+.link-to-photos-arrow {
+  // top: 1vh;
+  // left: 3vw !important;
+  position: static;
+  font-size: 35px !important;
+}
+.link-to-photos {
+  padding: 5px;
+}
+.link-to-photos-text:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.tags-container {
+  color: #000 !important;
+  top: 83vh !important;
+  position: absolute;
+  font-weight: 400;
+  font-size: 28px;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 30vw;
+}
+
+.tags {
+  overflow: hidden;
+}
+
+.tag {
+  background: #ccc;
+  border-radius: 3px 0 0 3px;
+  color: #000;
+  display: inline-block;
+  height: 26px;
+  line-height: 26px;
+  padding: 0 20px 0 23px;
+  position: relative;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  -webkit-transition: color 0.2s;
+  font-size: 14px;
+}
+
+.tag:hover {
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+}
+
+.add-tag-input {
+  font-size: 24px;
+  background-color: rgba(33,33,33,1);
+  border: inherit;
+  text-align: center;
+  width: 40%;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+  padding-bottom: 5px;
+  margin: 0 auto;
+}
+
+.add-tag-input::-webkit-input-placeholder {
+  color: #fff;
 }

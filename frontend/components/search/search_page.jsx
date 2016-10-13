@@ -1,11 +1,11 @@
 import React from 'react';
 import SearchUserItem from './search_user_item';
 import SearchPhotoItem from './search_photo_item';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import classNames from 'classnames';
 import UserPhoto from '../user_show/user_photo';
 
-export default class SearchPage extends React.Component {
+class SearchPage extends React.Component {
 
   constructor(props) {
     super(props);
@@ -44,8 +44,10 @@ export default class SearchPage extends React.Component {
     return items;
   }
 
-  handleView(photoId) {
-    return (e) => {};
+  handleView(userId,photoId) {
+    return (e) => {
+      this.props.router.push(`/users/${userId}/photos/${photoId}`);
+    };
   }
 
   photoItems() {
@@ -54,7 +56,10 @@ export default class SearchPage extends React.Component {
     for(let i = 0; i < this.props.search.length; i++) {
       photos.push(<UserPhoto key={ this.props.search[i].id }
         imageUrl={ this.props.search[i].image_url }
-        handleClick={ this.handleView(this.props.search[i].id)}/>);
+        handleClick={ this.handleView(
+                                      this.props.search[i].user.id,
+                                      this.props.search[i].id)}/>
+                                    );
 
       if(i > 0 && i % 4  === 0 || i === this.props.search.length-1) {
         this.rowsOfPhotos.push(
@@ -107,3 +112,4 @@ export default class SearchPage extends React.Component {
     );
   }
 }
+export default withRouter(SearchPage);

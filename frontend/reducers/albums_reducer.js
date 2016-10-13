@@ -39,9 +39,9 @@ const AlbumsReducer = (state = [], action) => {
       }
       album.photos.push(action.photo)
       return [
-        ...state.slice(0,i),
+        ...state.slice(0, index),
         album,
-        ...state.slice(i+1)
+        ...state.slice(index + 1)
       ];
     case REMOVE_PHOTO_FROM_ALBUM_IN_STATE:
       searchId = action.albumId

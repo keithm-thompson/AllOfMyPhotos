@@ -31,10 +31,10 @@ class CreateAlbum extends React.Component {
   handleClick(photoId){
     return () => {
       let duppedState = merge({}, this.state.selectedPhotos);
-      if (this.state.selectedPhotos.photoId){
-        delete duppedState.photoId;
+      if (this.state.selectedPhotos[photoId]){
+        delete duppedState[photoId];
       } else {
-        duppedState.photoId = true;
+        duppedState[photoId] = true;
       }
       this.setState({ selectedPhotos: duppedState });
     };
@@ -61,10 +61,20 @@ class CreateAlbum extends React.Component {
 
     if(this.props.photos){
       for(let i = 0; i < this.props.photos.length; i++) {
-        photos.push(<UserPhoto key={ this.props.photos[i].id }
-          imageUrl={ this.props.photos[i].image_url }
-          handleClick={ this.handleClick(this.props.photos[i].id)}/>);
-
+        if(this.state.selectedPhotos[this.props.photos[i].id]){
+          photos.push(
+            <UserPhoto key={ this.props.photos[i].id }
+              imageUrl={ this.props.photos[i].image_url }
+              handleClick={ this.handleClick(this.props.photos[i].id)}
+              selected={ true }/>
+          );
+        } else {
+          photos.push(
+            <UserPhoto key={ this.props.photos[i].id }
+              imageUrl={ this.props.photos[i].image_url }
+              handleClick={ this.handleClick(this.props.photos[i].id)}/>
+          );
+        }
         if(i > 0 && i % 4  === 0 || i === this.props.photos.length-1) {
           rowsOfPhotos.push(
             <ul key={i}>
@@ -75,14 +85,7 @@ class CreateAlbum extends React.Component {
         }
       }
     }
-    // let title = "Enter Title",
-    // description = "Enter Description (optional)";
-    // if (this.state.title.length > 0) {
-    //   title = this.state.title;
-    // }
-    // if (this.state.description.length > 0) {
-    //   description = this.state.description;
-    // }
+
     return(
       <div className="create-album-page">
         <div className="create-album-container">

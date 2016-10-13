@@ -107,7 +107,6 @@
 }
 
 .user-album-container {
-  justify-content: space-between;
   min-width: 800px;
   max-width: 80%;
   margin-left: auto;
@@ -128,6 +127,7 @@
   transform: translateZ(0);
   transition: bottom .15s ease-out;
   box-sizing: border-box;
+  margin-right: 10px;
 }
 
 .user-album-info {

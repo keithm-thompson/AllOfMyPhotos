@@ -49,6 +49,7 @@ class ViewPhoto extends React.Component {
   handleRemoveTag(tagId) {
     return (e) => {
       e.preventDefault();
+      e.stopPropagation();
       this.props.removeTagFromPhoto(
         this.props.photos[this.state.idx].id,
         tagId

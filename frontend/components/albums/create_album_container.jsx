@@ -12,7 +12,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  createAlbum: (album) => dispatch(createAlbum(album)),
+  createAlbum: (album, photoIds) => dispatch(createAlbum(album, photoIds)),
   createAlbumPhotoRelationship: (albumId, photoId) => dispatch(createAlbumPhotoRelationship(albumId, photoId))
 });
 

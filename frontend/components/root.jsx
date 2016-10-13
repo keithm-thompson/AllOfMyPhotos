@@ -53,7 +53,7 @@ const _ensureLoggedIn = (nextState, replace) => {
 };
 
 const checkSearchInState = (nextState) => {
-  if (nextState.location.pathname == "/search/photos") {
+  if (nextState.location.pathname == "/search/photos" || nextState.location.pathname == "/search/photos/" ) {
     let tagName = nextState.location.search.slice(1);
     store.dispatch(searchPhotos(tagName, ()=>{}));
   } else {

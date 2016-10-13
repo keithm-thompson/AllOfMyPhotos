@@ -20,10 +20,10 @@ export default class UserPhoto extends React.Component {
 
 
   render() {
-
     let liClassName = classNames({
       'user-photo-container': true,
-      'img-hover': this.state.isHovered
+      'img-hover': this.state.isHovered,
+      'selected-photos': Boolean(this.props.selected)
     });
 
 

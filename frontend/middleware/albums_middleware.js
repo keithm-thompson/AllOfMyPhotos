@@ -4,7 +4,7 @@ import {
   CREATE_ALBUM_PHOTO_RELATIONSHIP,
   DELETE_ALBUM_PHOTO_RELATIONSHIP,
   createAlbumPhotoRelationship,
-  receiveAlbum,
+  receiveOneAlbum,
   removeAlbum,
   addPhotoToAlbumInState,
   removePhotoToAlbumInState
@@ -24,7 +24,8 @@ const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   switch (action.type) {
     case CREATE_ALBUM:
       success = (album) => {
-        dispatch(receiveAlbum(album));
+        dispatch(receiveOneAlbum(album));
+        debugger
         action.photoIds.forEach((photoId) => {
           dispatch(createAlbumPhotoRelationship(album.id, photoId));
         });

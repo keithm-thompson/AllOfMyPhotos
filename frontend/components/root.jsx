@@ -11,7 +11,7 @@ import UserAlbumsContainer from './user_show/user_albums_container';
 import ViewPhotoContainer from './photos/view_photo_container';
 import ViewAlbumContainer from './albums/view_album_container';
 import CreateAlbumContainer from './albums/create_album_container';
-import { searchUsers } from '../actions/search_actions';
+import { searchUsers, searchPhotos } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
 import App from './app';
@@ -53,11 +53,13 @@ const _ensureLoggedIn = (nextState, replace) => {
 };
 
 const checkSearchInState = (nextState) => {
-  if (store.getState().search[0] === undefined) {
-    let reg = /\?(.*)&/;
-    let username = window.location.hash.match(reg)[1];
-    store.dispatch(searchUsers(username, ()=>{}));
-  }
+  if (nextState.location.pathname == "/search/photos") {
+    let tagName = nextState.location.search.slice(1);
+    store.dispatch(searchPhotos(tagName, ()=>{}));
+  } else {
+      let username = nextState.location.search.slice(1);
+      store.dispatch(searchUsers(username, ()=>{}));
+    }
   store.dispatch(fetchUser(store.getState().session.currentUser.id));
 };
 

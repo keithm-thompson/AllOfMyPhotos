@@ -189,8 +189,14 @@
   width: 30vw;
 }
 
+.tags-container form{
+
+}
+
 .tags {
   overflow: hidden;
+  padding-left: 3vw;
+  width: 100%;
 }
 
 .tag {
@@ -202,30 +208,62 @@
   line-height: 26px;
   padding: 0 20px 0 23px;
   position: relative;
-  margin: 0 10px 10px 0;
+  margin: 5px 10px 10px 0;
   text-decoration: none;
   -webkit-transition: color 0.2s;
   font-size: 14px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: width 500ms ease;
 }
 
 .tag:hover {
-  background-color: crimson;
-  color: white;
   cursor: pointer;
+  background: transparent;
+  border: 2px solid #868d91;
+}
+
+.add-tag-form {
+  font-size: 20px;
+  border: inherit;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px black;
+  background-color: rgba(33,33,33,1);
+  margin: 0 auto;
 }
 
 .add-tag-input {
-  font-size: 24px;
-  background-color: rgba(33,33,33,1);
+  font-size: 20px;
   border: inherit;
   text-align: center;
-  width: 40%;
   color: #fff;
   text-shadow: 1px 1px 1px black;
-  padding-bottom: 5px;
+  background-color: rgba(33,33,33,1);
   margin: 0 auto;
 }
 
 .add-tag-input::-webkit-input-placeholder {
   color: #fff;
+}
+
+.delete-tag {
+  vertical-align: middle;
+  font-size: 0px !important;
+  width: 10px;
+  padding: 5px 5px 0 0;
+  position: absolute;
+  right: 0;
+  text-align: end;
+  font-size: 14px;
+  height: 88%;
+  top: 0;
+}
+
+.tag:hover{
+  width: 12%;
+  .delete-tag {
+    font-size: 16px !important;
+    border-left: 1px solid #868d91;
+  }
 }

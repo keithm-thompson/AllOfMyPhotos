@@ -17,8 +17,10 @@ class ViewPhoto extends React.Component {
     this.deletePhoto = this.deletePhoto.bind(this);
     this.showActions = this.showActions.bind(this);
     this.toggleZoom = this.toggleZoom.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.handleTagInput = this.handleTagInput.bind(this);
     this.handleTagSubmit = this.handleTagSubmit.bind(this);
+    this.handleRemoveTag = this.handleRemoveTag.bind(this);
   }
 
   handleNav(num) {
@@ -40,8 +42,27 @@ class ViewPhoto extends React.Component {
         this.props.photos[this.state.idx].id,
         this.state.tagName
       );
+      this.setState({ tagName: "" });
     }
   }
+
+  handleRemoveTag(tagId) {
+    return (e) => {
+      e.preventDefault();
+      this.props.removeTagFromPhoto(
+        this.props.photos[this.state.idx].id,
+        tagId
+      );
+    };
+  }
+
+  handleSearch(tagName) {
+    return (e) => {
+      e.preventDefault();
+      this.props.router.push(`/search/photos?${tagName}`);
+    };
+  }
+
   deletePhoto() {
     this.props.deletePhoto(this.props.photos[this.state.idx].id);
     // add promise
@@ -104,7 +125,6 @@ class ViewPhoto extends React.Component {
 
     this.zoomToggleButton = classNames({
       'material-icons': true,
-      'on-move': true,
       'toggle-zoom': true
     });
   }
@@ -206,49 +226,42 @@ class ViewPhoto extends React.Component {
 
   addZoomedOutElements() {
     const tags = this.props.photos[this.state.idx].tags.map((tag) => {
-      let isUsersPhoto = this.props.userProperties.id === this.props.photos[this.state.idx].user_id;
-      return <TagItem key={tag.id}
-        tagName={ tag.tagName }
-        onClick={ this.handleRemoveTag }
+      let isUsersPhoto = this.props.currentUser.id === this.props.userProperties.id;
+      return <TagItem key={tag.tag_id}
+        tagName={ tag.tag_name }
+        handleSearch={ this.handleSearch(tag.tag_name) }
+        handleDelete={ this.handleRemoveTag(tag.tag_id) }
         isUsersPhoto={ isUsersPhoto }/>;
     });
 
     this.title = <h5 className="photo-title">{ this.props.photos[this.state.idx].title }</h5>;
     this.uploadedTime = <h5>Uploaded on { this.props.photos[this.state.idx].uploadedOn }</h5>;
     this.linkToPhotos = <div>
-                      <Link to={`/users/${this.props.userProperties.id}`} className="link-to-photos-text"
+                      <Link to={ `/users/${this.props.userProperties.id}`} className="link-to-photos-text"
                         ><i className="material-icons link-to-photos-arrow"  >arrow_back</i> Back to photos</Link>;
                     </div>;
     this.tagsContainer = <div className="tags-container">
+                    <form onSubmit={ this.handleTagSubmit } className="add-tag-form">
                       <input type="text"
                         placeholder="Add Tag"
                         className="add-tag-input"
                         value={ this.state.tagName }
-                        onChange={ this.handleTagInput }
-                        onSubmit={ this.handleTagSubmit }></input>
+                        onChange={ this.handleTagInput }></input>
+                    </form>
                       <ul className="tags">
                         { tags }
-                        <li className="tag">test tag</li>
-                        <li className="tag">test tag1</li>
-                        <li className="tag">test tag2</li>
-                        <li className="tag">test tag3</li>
-                        <li className="tag">test tag4</li>
-                        <li className="tag">test tag5</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag6</li>
-                        <li className="tag">test tag7</li>
                       </ul>
                     </div>;
 
-    this.toggleZoom = <i className={ this.zoomToggleButton } onClick={this.toggleZoom}>fullscreen</i>;
+    this.toggleZoomButton = <i className={ this.zoomToggleButton } onClick={this.toggleZoom}>fullscreen</i>;
+  }
+
+  removeZoomedOutElements() {
+    this.tagsContainer = null;
+    this.title = null;
+    this.uploadedTime = null;
+    this.linkToPhotos = null;
+    this.tagsContainer = null;
   }
 
   componentWillUpdate(nextProps){
@@ -286,7 +299,8 @@ class ViewPhoto extends React.Component {
       if (this.state.zoomedOut) {
         this.addZoomedOutElements();
       } else {
-        this.toggleZoom = <i className={ this.zoomToggleButton } onClick={this.toggleZoom}>fullscreen_exit</i>;
+        this.removeZoomedOutElements();
+        this.toggleZoomButton = <i className={ this.zoomToggleButton } onClick={this.toggleZoom}>fullscreen_exit</i>;
       }
       return(
         <div className={this.viewPhotoContainerClasses} onMouseMove={this.showActions}>
@@ -300,7 +314,7 @@ class ViewPhoto extends React.Component {
           <div className="uploaded-on">
             { this.uploadedTime }
           </div>
-          { this.toggleZoom }
+          { this.toggleZoomButton }
           { this.linkToPhotos }
           { prevButton }
           <div className={ this.viewPhotoDivClass }>

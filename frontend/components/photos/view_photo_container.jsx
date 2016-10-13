@@ -12,6 +12,7 @@ import {
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: state.session.currentUser,
     photos: state.user.photos,
     userProperties: state.user.properties
   };

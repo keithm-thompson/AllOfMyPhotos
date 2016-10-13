@@ -52,7 +52,7 @@ export const addTagToPhoto = (photoId, tag_name, success, error) => (
   $.ajax({
     method: 'POST',
     url: `api/photos/${photoId}/add_tag`,
-    data: { photo: tag_name },
+    data: { photo: { tag_name }  },
     success,
     error
   })

@@ -15,7 +15,6 @@ import {
 const SearchMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;
   let error;
-
   switch (action.type) {
     case SEARCH_USERS:
       success = (users) => {

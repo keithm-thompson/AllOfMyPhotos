@@ -4,7 +4,8 @@ import UserShow from './user_show';
 
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user,
+  currentUser: state.session.currentUser
 });
 
 export default connect(

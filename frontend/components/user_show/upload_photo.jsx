@@ -1,6 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 
-export default class UploadPhoto extends React.Component {
+class UploadPhoto extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,6 +30,7 @@ export default class UploadPhoto extends React.Component {
     formData.append("photo[image]", file);
 
     this.props.uploadPhoto(formData);
+    this.props.router.push(`/users/${this.props.currentUser.id}`);
   }
 
   updateTitle(e) {
@@ -48,6 +50,7 @@ export default class UploadPhoto extends React.Component {
           </div>
       </form>
     );
-
   }
 }
+
+export default withRouter(UploadPhoto);

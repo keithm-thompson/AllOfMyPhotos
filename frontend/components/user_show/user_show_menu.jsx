@@ -8,6 +8,7 @@ export default class UserShowMenu extends React.Component {
     let uploadClassnames;
     let photoClassnames;
     let albumClassnames;
+    let uploadPhotoLink;
 
     if(this.props.route.path === "albums") {
       albumClassnames = classNames({
@@ -22,11 +23,14 @@ export default class UserShowMenu extends React.Component {
         "selected-menu-link": true
       });
     }
+    if( this.props.userProperties.id === this.props.currentUser.id ) {
+      uploadPhotoLink = <Link to={`/users/${this.props.userProperties.id}/upload`} className="user-show-link">Upload Photo</Link> ;
+    }
     return (
       <header className="user-show-nav-bar">
         <ul className="search-bar-list">
           <li className={uploadClassnames}>
-            <Link to={`/users/${this.props.userProperties.id}/upload`} className="user-show-link">Upload Photo</Link>
+            { uploadPhotoLink }
           </li>
           <li className={photoClassnames}>
             <Link to={`/users/${this.props.userProperties.id}`} className="user-show-link">Photos</Link>

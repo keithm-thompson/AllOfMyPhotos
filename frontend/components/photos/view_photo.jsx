@@ -72,7 +72,7 @@ class ViewPhoto extends React.Component {
     if (index > 0) {
       this.setState({ idx: --index});
     } else if (index < this.props.photos.length) {
-      this.setState({ idx: ++index});
+      this.setState({ idx: index});
     } else {
       this.props.router.push(`/users/${this.props.userProperties.id}`);
     }
@@ -226,6 +226,7 @@ class ViewPhoto extends React.Component {
   }
 
   addZoomedOutElements() {
+    let tagInputForm;
     const tags = this.props.photos[this.state.idx].tags.map((tag) => {
       let isUsersPhoto = this.props.currentUser.id === this.props.userProperties.id;
       return <TagItem key={tag.tag_id}
@@ -241,14 +242,19 @@ class ViewPhoto extends React.Component {
                       <Link to={ `/users/${this.props.userProperties.id}`} className="link-to-photos-text"
                         ><i className="material-icons link-to-photos-arrow"  >arrow_back</i> Back to photos</Link>;
                     </div>;
+
+    if (this.props.userProperties.id === this.props.currentUser.id) {
+      tagInputForm = <form onSubmit={ this.handleTagSubmit } className="add-tag-form">
+        <input type="text"
+          placeholder="Add Tag"
+          className="add-tag-input"
+          value={ this.state.tagName }
+          onChange={ this.handleTagInput }></input>
+      </form>;
+    }
+
     this.tagsContainer = <div className="tags-container">
-                    <form onSubmit={ this.handleTagSubmit } className="add-tag-form">
-                      <input type="text"
-                        placeholder="Add Tag"
-                        className="add-tag-input"
-                        value={ this.state.tagName }
-                        onChange={ this.handleTagInput }></input>
-                    </form>
+                    { tagInputForm }
                       <ul className="tags">
                         { tags }
                       </ul>
@@ -290,7 +296,7 @@ class ViewPhoto extends React.Component {
 
 
     if (this.state.idx >= 0) {
-      let prevButton, nextButton;
+      let prevButton, nextButton, deleteButton;
       if (this.state.idx > 0) {
         prevButton = <i className={ this.prevButtonClass } onClick={ this.handleNav(-1)} >keyboard_arrow_left</i>;
       }
@@ -303,6 +309,11 @@ class ViewPhoto extends React.Component {
         this.removeZoomedOutElements();
         this.toggleZoomButton = <i className={ this.zoomToggleButton } onClick={this.toggleZoom}>fullscreen_exit</i>;
       }
+
+      if (this.props.userProperties.id === this.props.currentUser.id) {
+        deleteButton = <i className={ this.deleteButtonClass } onClick={this.deletePhoto}>delete_forever</i>;
+        }
+
       return(
         <div className={this.viewPhotoContainerClasses} onMouseMove={this.showActions}>
           <div className={ this.userInfoClass }>
@@ -321,7 +332,7 @@ class ViewPhoto extends React.Component {
           <div className={ this.viewPhotoDivClass }>
             <img src={ this.props.photos[this.state.idx].image_url } className={ this.photoClass }></img>
           </div>
-          <i className={ this.deleteButtonClass } onClick={this.deletePhoto}>delete_forever</i>
+          { deleteButton }
           { nextButton }
         </div>
       );

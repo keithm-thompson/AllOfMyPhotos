@@ -140,7 +140,7 @@ class CreateAlbum extends React.Component {
                 className="create-album-title"></input>
               <textarea
                 placeholder="Enter Description (optional)"
-                value={ this.state.description }
+                value={ this.state.description || "" }
                 onChange={ this.handleInput("description") }
                 className="create-album-desc"></textarea>
             </div>

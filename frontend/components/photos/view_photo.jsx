@@ -293,8 +293,6 @@ class ViewPhoto extends React.Component {
       this.showActionsClasses();
     }
 
-
-
     if (this.state.idx >= 0) {
       let prevButton, nextButton, deleteButton;
       if (this.state.idx > 0) {

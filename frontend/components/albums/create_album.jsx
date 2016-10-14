@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router';
 import UserPhoto from '../user_show/user_photo';
 import merge from 'lodash/merge';
+import { Notification } from 'react-notification';
 
 class CreateAlbum extends React.Component {
   constructor(props){
@@ -16,6 +17,7 @@ class CreateAlbum extends React.Component {
     this.handleInput =  this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearErrorsInState = this.clearErrorsInState.bind(this);
   }
 
   handleInput(type){
@@ -55,6 +57,10 @@ class CreateAlbum extends React.Component {
     }
   }
 
+  clearErrorsInState() {
+    this.setState({ errors: [] });
+  }
+
   render() {
     let rowsOfPhotos = [];
     let photos = [];
@@ -90,7 +96,13 @@ class CreateAlbum extends React.Component {
       <div className="create-album-page">
         <div className="create-album-container">
           <form className="create-album-info">
-            <h4>{ this.state.errors[0] }</h4>
+            <Notification
+              isActive={this.state.errors.length > 0}
+              message={this.state.errors[0] || ""}
+              onDismiss={this.clearErrorsInState}
+              dismissAfter={3000}
+              activeClassName='notification'
+            />
             <div className="create-album-input">
               <input
                 type="text"

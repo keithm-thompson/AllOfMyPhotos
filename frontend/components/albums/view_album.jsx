@@ -6,6 +6,7 @@ class ViewAlbum extends React.Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.deleteAlbum = this.deleteAlbum.bind(this);
   }
 
   handleClick(photoId) {
@@ -14,7 +15,14 @@ class ViewAlbum extends React.Component {
     };
   }
 
+  deleteAlbum(e) {
+    this.props.deleteAlbum(this.props.album.id);
+    this.props.router.push(`/users/${this.props.userProperties.id}/albums`);
+  }
+
   render(){
+    let editAlbumLink, deleteButton;
+
     if(this.props.album){
       let rowsOfPhotos = [];
       let photos = [];
@@ -33,6 +41,17 @@ class ViewAlbum extends React.Component {
         }
       }
 
+      if(this.props.album.userId === this.props.currentUser.userId){
+        editAlbumLink = <div className="edit-album">
+          <i className="material-icons">mode_edit</i>
+          <Link to={`/users/${this.props.userProperties.id}/albums/${this.props.album.id}/edit_album`}>Edit Album</Link>
+        </div>;
+
+        deleteButton = <div className="delete-album">
+                          <i className="material-icons" onClick={this.deleteAlbum}>delete_forever</i>
+                       </div> ;
+      }
+
       let description = "No description given";
 
       if (this.props.album.description) {
@@ -44,6 +63,9 @@ class ViewAlbum extends React.Component {
             <i className="material-icons"> keyboard_arrow_left</i>
             <Link to={`/users/${this.props.userProperties.id}/albums`}>Back to albums list</Link>
           </div>
+
+        { editAlbumLink }
+        { deleteButton }
 
           <div className="album-cover-image-container" style={ {backgroundImage: "url(" + this.props.album.photos[0].image_url + ")" } }>
             <div className="background-dim"></div>

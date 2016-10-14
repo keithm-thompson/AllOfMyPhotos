@@ -7,6 +7,7 @@ export const ADD_PHOTO_TO_ALBUM_IN_STATE = "ADD_PHOTO_TO_ALBUM_IN_STATE";
 export const REMOVE_PHOTO_FROM_ALBUM_IN_STATE = "REMOVE_PHOTO_FROM_ALBUM_IN_STATE";
 export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 export const RECEIVE_ONE_ALBUM = "RECEIVE_ONE_ALBUM";
+export const RECEIVE_UPDATED_ALBUM = "RECEIVE_UPDATED_ALBUM";
 export const REMOVE_ALBUM = "REMOVE_ALBUM";
 
 export const createAlbum = (album, photoIds) => ({
@@ -59,6 +60,11 @@ export const receiveAlbums = (albums) => ({
 
 export const receiveOneAlbum = (album) => ({
   type: RECEIVE_ONE_ALBUM,
+  album
+});
+
+export const receiveUpdatedAlbum = (album) => ({
+  type: RECEIVE_UPDATED_ALBUM,
   album
 });
 

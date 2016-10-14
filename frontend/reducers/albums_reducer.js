@@ -1,6 +1,7 @@
 import {
   RECEIVE_ALBUMS,
   RECEIVE_ONE_ALBUM,
+  RECEIVE_UPDATED_ALBUM,
   REMOVE_ALBUM,
   ADD_PHOTO_TO_ALBUM_IN_STATE,
   REMOVE_PHOTO_FROM_ALBUM_IN_STATE
@@ -20,6 +21,24 @@ const AlbumsReducer = (state = [], action) => {
         action.album,
         ...state
       ];
+
+    case RECEIVE_UPDATED_ALBUM:
+      searchId = action.album.id;
+      let updatedAlbum;
+      index = -1;
+      for(let i = 0; i < state.length ; i++) {
+        if (state[i].id === searchId) {
+          index = i;
+          updatedAlbum = merge({}, state[i]);
+          break;
+        }
+      }
+      return [
+        ...state.slice(0, index),
+        updatedAlbum,
+        ...state.slice(index + 1)
+      ];
+
 
     case REMOVE_ALBUM:
       const filteredAlbums = state.filter((album) => {
@@ -56,11 +75,12 @@ const AlbumsReducer = (state = [], action) => {
       let albumPhotosFiltered = albumToAddPhotoTo.photos.filter((photo) => {
         return photo.id !== action.photo.id;
       });
+
       albumToAddPhotoTo.photos = albumPhotosFiltered;
       return [
-        ...state.slice(0,i),
+        ...state.slice(0,index),
         albumToAddPhotoTo,
-        ...state.slice(i+1)
+        ...state.slice(index+1)
       ];
 
     default:

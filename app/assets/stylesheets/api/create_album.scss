@@ -139,6 +139,13 @@
   right: 0;
 }
 
+.create-album-link-back {
+  z-index: 1000;
+  position: absolute !important;
+  top: 315px !important;
+  left: 15px;
+}
+
 .photos-to-choose-from-container{
   // background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.03) 8%,rgba(0,0,0,.11) 21%,rgba(0,0,0,.61) 78%,rgba(0,0,0,.7) 95%,rgba(0,0,0,.7));
   margin-bottom: 20px;

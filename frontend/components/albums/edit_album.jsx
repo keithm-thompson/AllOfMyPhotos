@@ -6,14 +6,14 @@ import merge from 'lodash/merge';
 class CreateAlbum extends React.Component {
   constructor(props){
     let selectedPhotos = {};
-    this.props.album.photos.forEach((photo) => {
+    props.album.photos.forEach((photo) => {
       selectedPhotos[photo.id] = true;
     });
 
     super(props);
     this.state= ({
-      title: this.props.album.title,
-      description: this.props.album.description,
+      title: props.album.title,
+      description: props.album.description,
       selectedPhotos: selectedPhotos,
       photosToAdd: {},
       photosToRemove: {},
@@ -37,13 +37,28 @@ class CreateAlbum extends React.Component {
 
   handleClick(photoId){
     return () => {
-      let duppedState = merge({}, this.state.selectedPhotos);
+      let photosToAdd = merge({}, this.state.photosToAdd);
+      let photosToRemove = merge({}, this.state.photosToRemove);
+
       if (this.state.selectedPhotos[photoId]){
-        delete duppedState[photoId];
+        delete photosToAdd[photoId];
+        if (photosToRemove[photoId]) {
+         delete photosToRemove[photoId];
+       } else {
+         photosToRemove[photoId] = true;
+       }
       } else {
-        duppedState[photoId] = true;
+        delete photosToRemove[photoId];
+        if (photosToAdd[photoId]) {
+          delete photosToAdd[photoId];
+        } else {
+          photosToAdd[photoId] = true;
+        }
       }
-      this.setState({ selectedPhotos: duppedState });
+      this.setState({
+                      photosToAdd,
+                      photosToRemove
+                    });
     };
   }
 
@@ -51,7 +66,7 @@ class CreateAlbum extends React.Component {
     e.preventDefault();
     if (this.state.title.length === 0) {
       this.setState({ errors: ["Albums must have titles."] });
-    } else if (Object.keys(this.state.selectedPhotos).length === 0) {
+    } else if (Object.keys(this.state.selectedPhotos).length - Object.keys(this.state.photosToRemove).length + Object.keys(this.state.photosToAdd).length ===  0) {
       this.setState({ errors: ["You must select at least one photo to add to the album."] });
     } else {
       this.props.updateAlbum(
@@ -118,7 +133,7 @@ class CreateAlbum extends React.Component {
                 className="create-album-desc"></textarea>
             </div>
             <button onClick={this.handleSubmit}
-              className="button signup-style">Submit</button>
+              className="button signup-style">Update Album</button>
           </form>
           <header className="create-album-content-split">Select Photos To Add To This Album!</header>
           <div className="photos-to-choose-from-container">

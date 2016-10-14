@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import UserPhoto from '../user_show/user_photo';
 import merge from 'lodash/merge';
 
@@ -107,6 +107,10 @@ class CreateAlbum extends React.Component {
             <button onClick={this.handleSubmit}
               className="button signup-style">Submit</button>
           </form>
+          <div className="back-to-album create-album-link-back">
+            <i className="material-icons"> keyboard_arrow_left</i>
+            <Link to={`/users/${this.props.userId}/albums`}>Back to albums list</Link>
+          </div>
           <header className="create-album-content-split">Select Photos To Add To This Album!</header>
           <div className="photos-to-choose-from-container">
             <div className="photos-to-choose-from">

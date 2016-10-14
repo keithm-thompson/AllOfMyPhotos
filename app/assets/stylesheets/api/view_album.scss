@@ -51,12 +51,49 @@
 }
 
 .back-to-album {
+  // display: inline-block;
   margin-left: 5px;
   position: relative;
   top: 73px;
   color: #212124;
   vertical-align: super;
 }
+.edit-album {
+  float: right;
+  right: 5px;
+  position: relative;
+  top: 47px;
+  color: #212124;
+  vertical-align: super;
+}
+
+.delete-album {
+  right: 0200px;
+  position: absolute;
+  top: 440px;
+  color: #212124;
+  vertical-align: super;
+}
+.delete-album i {
+  font-size: 36px !important;
+}
+
+.back-to-album:hover{
+  cursor: pointer;
+  opacity: .7;
+}
+
+.edit-album:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+.delete-album:hover {
+  cursor: pointer;
+  opacity: .7;
+}
+
+
 
 .album-view-container h1 {
   font-size: 34px;

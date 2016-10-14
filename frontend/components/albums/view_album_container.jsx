@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ViewAlbum from './view_album';
+import { deleteAlbum } from '../../actions/album_actions';
 
 const mapStateToProps = (state, ownProps) => {
   let albumId = parseInt(ownProps.params.id);
@@ -13,13 +14,14 @@ const mapStateToProps = (state, ownProps) => {
   }
   return {
     album: state.user.albums[index],
-    userProperties: state.user.properties
+    userProperties: state.user.properties,
+    currentUser: state.session.currentUser
   };
 };
 
 
 const mapDispatchToProps = (dispatch) => ({
-  // soon to be remove photo from album
+  deleteAlbum: (albumId) => dispatch(deleteAlbum(albumId))
 });
 
 export default connect(

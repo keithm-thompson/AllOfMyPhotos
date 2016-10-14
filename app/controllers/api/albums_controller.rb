@@ -51,7 +51,7 @@ class Api::AlbumsController < ApplicationController
                                   photo_id: params[:id])
     if @album_photo
       @album_photo.destroy
-      render "api/albums/album_photo"
+      render "api/albums/album_photo_relationship"
     else
       render(
       json: ["an error has occured"],

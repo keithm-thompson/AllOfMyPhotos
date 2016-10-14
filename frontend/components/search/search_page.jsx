@@ -74,6 +74,10 @@ class SearchPage extends React.Component {
   }
 
   componentWillReceiveProps(nextState) {
+    if (this.state.search !== nextState.route.path) {
+      this.props.clearSearch();
+    }
+
     this.setState({ search: nextState.route.path,
                     queryString: nextState.location.search.slice(1)});
   }

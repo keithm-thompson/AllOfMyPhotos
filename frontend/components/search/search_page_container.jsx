@@ -4,6 +4,7 @@ import {
   createFollowRelationship,
   deleteFollowRelationship
  } from '../../actions/following_actions';
+import { clearSearch } from '../../actions/search_actions';
 import SearchPage from './search_page';
 
 const mapStateToProps = (state) => ({
@@ -13,7 +14,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   createFollowRelationship: (userId) => dispatch(createFollowRelationship(userId)),
-  deleteFollowRelationship: (userId) => dispatch(deleteFollowRelationship(userId))
+  deleteFollowRelationship: (userId) => dispatch(deleteFollowRelationship(userId)),
+  clearSearch: () => dispatch(clearSearch())
 });
 
 export default connect(

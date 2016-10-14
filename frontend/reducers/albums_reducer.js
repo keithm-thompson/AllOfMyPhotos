@@ -9,7 +9,8 @@ import {
 import merge from 'lodash/merge';
 
 const AlbumsReducer = (state = [], action) => {
-  let album, searchId, index;
+
+  let albumToAddPhotoTo, searchId, index;
   switch (action.type) {
     case RECEIVE_ALBUMS:
       return [...action.albums];
@@ -27,40 +28,38 @@ const AlbumsReducer = (state = [], action) => {
       return filteredAlbums;
 
     case ADD_PHOTO_TO_ALBUM_IN_STATE:
-      searchId = action.albumId
+      searchId = action.albumId;
       index = -1;
-      album;
       for(let i = 0; i < state.length ; i++) {
         if (state[i].id === searchId) {
           index = i;
-          album = merge({}, state[i]);
+          albumToAddPhotoTo = merge({}, state[i]);
           break;
         }
       }
-      album.photos.push(action.photo)
+      albumToAddPhotoTo.photos.push(action.photo);
       return [
         ...state.slice(0, index),
-        album,
+        albumToAddPhotoTo,
         ...state.slice(index + 1)
       ];
     case REMOVE_PHOTO_FROM_ALBUM_IN_STATE:
-      searchId = action.albumId
+      searchId = action.albumId;
       index = -1;
-      album;
       for(let i = 0; i < state.length ; i++) {
         if (state[i].id === searchId) {
           index = i;
-          album = merge({}, state[i]);
+          albumToAddPhotoTo = merge({}, state[i]);
           break;
         }
       }
-      let albumPhotosFiltered = album.photos.filter((photo) => {
-        return photo.id !== action.photo.id
+      let albumPhotosFiltered = albumToAddPhotoTo.photos.filter((photo) => {
+        return photo.id !== action.photo.id;
       });
-      album.photos = albumPhotosFiltered;
+      albumToAddPhotoTo.photos = albumPhotosFiltered;
       return [
         ...state.slice(0,i),
-        album,
+        albumToAddPhotoTo,
         ...state.slice(i+1)
       ];
 

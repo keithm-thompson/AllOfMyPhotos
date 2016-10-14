@@ -77,9 +77,9 @@ class Api::PhotosController < ApplicationController
   end
 
   def search
-    tag = Tag.find_by(tag_name: params[:tag_name])
-    if tag
-      @photos = tag.photos
+    tag = Tag.where(tag_name: params[:tag_name])
+    if tag.length > 0
+      @photos = tag.first.photos
       render "api/photos/feed"
     else
       render(

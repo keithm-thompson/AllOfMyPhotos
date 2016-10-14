@@ -20,14 +20,14 @@ import {
 const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;
   let error = (e) => console.log(e);
-
+  
   switch (action.type) {
     case CREATE_ALBUM:
       success = (album) => {
-        dispatch(receiveOneAlbum(album));
         action.photoIds.forEach((photoId) => {
           dispatch(createAlbumPhotoRelationship(album.id, photoId));
         });
+        dispatch(receiveOneAlbum(album));
       };
       createAlbum(action.album, success, error);
       return next(action);

@@ -1,6 +1,7 @@
 import {
   RECEIVE_USERS_SEARCH_RESULTS,
-  RECEIVE_PHOTOS_SEARCH_RESULTS
+  RECEIVE_PHOTOS_SEARCH_RESULTS,
+  CLEAR_SEARCH
 } from '../actions/search_actions';
 
 const SearchReducer = (state = [], action) => {
@@ -14,6 +15,9 @@ const SearchReducer = (state = [], action) => {
       return [
         ...action.photos
       ];
+
+    case CLEAR_SEARCH:
+      return [];
 
     default:
       return state;

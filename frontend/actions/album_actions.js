@@ -1,4 +1,5 @@
 export const CREATE_ALBUM = "CREATE_ALBUM";
+export const UPDATE_ALBUM = "UPDATE_ALBUM";
 export const DELETE_ALBUM = "DELETE_ALBUM";
 export const CREATE_ALBUM_PHOTO_RELATIONSHIP = "CREATE_ALBUM_PHOTO_RELATIONSHIP";
 export const DELETE_ALBUM_PHOTO_RELATIONSHIP = "DELETE_ALBUM_PHOTO_RELATIONSHIP";
@@ -12,6 +13,14 @@ export const createAlbum = (album, photoIds) => ({
   type: CREATE_ALBUM,
   album,
   photoIds
+});
+
+export const updateAlbum = (albumId, album, photoIdsToAdd, photoIdsToDelete) => ({
+  type: UPDATE_ALBUM,
+  albumId,
+  album,
+  photoIdsToAdd,
+  photoIdsToDelete
 });
 
 export const deleteAlbum = (albumId) => ({

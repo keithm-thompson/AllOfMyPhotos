@@ -8,10 +8,20 @@ export const createAlbum = (album, success, error) => (
   })
 );
 
+export const updateAlbum = (albumId, album, success, error) => (
+  $.ajax({
+    method: 'PATCH',
+    url: `api/albums/${albumId}`,
+    data: { album },
+    success,
+    error
+  })
+);
+
 export const deleteAlbum = (albumId, success, error) => (
   $.ajax({
     method: 'DELETE',
-    url: `api/albums/${albumID}`,
+    url: `api/albums/${albumId}`,
     success,
     error
   })

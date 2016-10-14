@@ -11,6 +11,7 @@ import UserAlbumsContainer from './user_show/user_albums_container';
 import ViewPhotoContainer from './photos/view_photo_container';
 import ViewAlbumContainer from './albums/view_album_container';
 import CreateAlbumContainer from './albums/create_album_container';
+import EditAlbumContainer from './albums/edit_album_container';
 import { searchUsers, searchPhotos, clearSearch } from '../actions/search_actions';
 import { fetchInitialFeed } from '../actions/photo_actions';
 import { fetchUser } from '../actions/user_actions';
@@ -27,6 +28,7 @@ const Root = ({ store }) => (
           <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser(store) }></Route>
           <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser(store) }></Route>
           <Route path="/users/:user_id/create_album" component={ CreateAlbumContainer } onEnter={ getUser(store) }></Route>
+          <Route path="/users/:user_id/edit_album/:id" component={ EditAlbumContainer } onEnter={ getUser(store) }></Route>
           <Route path="users/:user_id" component={ UserShowContainer } onEnter={ getUser(store) }>
             <IndexRoute component={ UserPhotosContainer } />
             <Route path="upload" component={ UploadPhotoFormContainer }></Route>

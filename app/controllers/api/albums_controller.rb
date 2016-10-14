@@ -11,6 +11,15 @@ class Api::AlbumsController < ApplicationController
     end
   end
 
+  def update
+    @album = Album.find(params[:id])
+    if @album.update_attributes(album_params)
+      render "api/albums/show"
+    else
+      render json: @album.errors.full_messages, status: 422
+    end
+  end
+
 
   def destroy
     @album = Album.find(params[:id])

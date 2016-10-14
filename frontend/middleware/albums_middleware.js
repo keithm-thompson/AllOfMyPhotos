@@ -1,5 +1,6 @@
 import {
   CREATE_ALBUM,
+  UPDATE_ALBUM,
   DELETE_ALBUM,
   CREATE_ALBUM_PHOTO_RELATIONSHIP,
   DELETE_ALBUM_PHOTO_RELATIONSHIP,
@@ -12,6 +13,7 @@ import {
 
 import {
   createAlbum,
+  updateAlbum,
   deleteAlbum,
   addPhotoToAlbum,
   removePhotoFromAlbum
@@ -20,7 +22,7 @@ import {
 const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
   let success;
   let error = (e) => console.log(e);
-  
+
   switch (action.type) {
     case CREATE_ALBUM:
       success = (album) => {
@@ -30,6 +32,20 @@ const AlbumsMiddleware = ({ getState, dispatch }) => (next) => (action) => {
         dispatch(receiveOneAlbum(album));
       };
       createAlbum(action.album, success, error);
+      return next(action);
+
+    case UPDATE_ALBUM:
+      success = (album) => {
+        dispatch(removeAlbum(album));
+        action.photoIdsToAdd.forEach((photoId) => {
+          dispatch(createAlbumPhotoRelationship(album.id, photoId));
+        });
+        action.photoIdsToDelete.forEach((photoId) => {
+          dispatch(removePhotoFromAlbum(album.id, photoId));
+        });
+        dispatch(receiveOneAlbum(album));
+      };
+      updateAlbum(action.albumId, action.album, success, error);
       return next(action);
 
     case DELETE_ALBUM:

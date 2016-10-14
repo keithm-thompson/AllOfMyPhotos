@@ -30,7 +30,7 @@ class UploadPhoto extends React.Component {
     formData.append("photo[image]", file);
 
     this.props.uploadPhoto(formData);
-    this.props.router.push(`/users/${this.props.currentUser.id}`);
+    this.props.router.push(`/users/${this.props.currentUser.id}?notification=yes`);
   }
 
   updateTitle(e) {

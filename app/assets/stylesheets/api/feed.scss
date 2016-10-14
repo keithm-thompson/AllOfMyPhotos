@@ -17,6 +17,11 @@
   margin-bottom: 5px;
 }
 
+.feed-photo:hover {
+  cursor: pointer;
+  opacity: .8;
+}
+
 .feed-user-icon {
   width: 45px;
   height: 45px;
@@ -35,6 +40,11 @@
   display: flex;
   flex-wrap: wrap;
   width: 300px;
+}
+
+.photo-info:hover {
+  cursor: pointer;
+  opacity: .7;
 }
 .feed-container h4 {
   // float: left;

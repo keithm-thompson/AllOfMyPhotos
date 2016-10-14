@@ -22,7 +22,7 @@ const Root = ({ store }) => (
         <Route path="/welcome" component={WelcomePage} onEnter={ _redirectIfLoggedIn(store) } />
         <Route path="/" component={App} onEnter={ _ensureLoggedIn(store) }>
           <IndexRoute component={FeedContainer} />
-          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState } ></Route>
+          <Route path="search" component={ SearchPageContainer } onEnter={ checkSearchInState(store) } ></Route>
           <Route path="search/photos" component={ SearchPageContainer } onEnter={ checkSearchInState(store) } ></Route>
           <Route path="/users/:user_id/photos/:id" component={ ViewPhotoContainer } onEnter={ getUser(store) }></Route>
           <Route path="/users/:user_id/albums/:id" component={ ViewAlbumContainer } onEnter={ getUser(store) }></Route>
@@ -36,7 +36,6 @@ const Root = ({ store }) => (
     </Router>
   </Provider>
 );
-// <Route path="/users/:user_id/albums/:id" component={ ViewPhotoContainer } onEnter={ getUser }></Route>
 
 const _redirectIfLoggedIn = (store) => (nextState, replace) => {
   const currentUser = store.getState().session.currentUser;
@@ -53,11 +52,11 @@ const _ensureLoggedIn = (store) => (nextState, replace) => {
 };
 
 const checkSearchInState = (store) => {
-  return (nextState) => {
-  if (nextState.location.pathname == "/search/photos" || nextState.location.pathname == "/search/photos/" ) {
+  return (nextState, something) => {
     store.dispatch(clearSearch());
+  if (nextState.location.pathname == "/search/photos" || nextState.location.pathname == "/search/photos/" ) {
     let tagName = nextState.location.search.slice(1);
-    store.dispatch(searchPhotos(tagName, ()=>{}));
+    store.dispatch(searchPhotos(tagName));
   } else {
       let username = nextState.location.search.slice(1);
       store.dispatch(searchUsers(username, ()=>{}));

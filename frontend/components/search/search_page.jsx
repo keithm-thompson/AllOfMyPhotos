@@ -11,6 +11,7 @@ class SearchPage extends React.Component {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.handleView = this.handleView.bind(this);
+    this.handleProfileView = this.handleProfileView.bind(this);
     this.state = {
       search: this.props.route,
       queryString: null
@@ -28,6 +29,12 @@ class SearchPage extends React.Component {
     };
   }
 
+  handleProfileView(userId) {
+    return () => {
+      this.props.router.push(`/users/${userId}`);
+    };
+  }
+
   userItems() {
     let items =  this.props.search.map((user, idx)=>{
       let isFollowing;
@@ -38,6 +45,7 @@ class SearchPage extends React.Component {
       }
       return <SearchUserItem user={user}
               handleClick={this.handleClick}
+              handleView={this.handleProfileView(user.id)}
               isFollowing={isFollowing}
               key={idx} />;
     });
@@ -56,6 +64,7 @@ class SearchPage extends React.Component {
     for(let i = 0; i < this.props.search.length; i++) {
       photos.push(<UserPhoto key={ this.props.search[i].id }
         imageUrl={ this.props.search[i].image_url }
+        style={ {marginRight: '5px' }}
         handleClick={ this.handleView(
                                       this.props.search[i].user.id,
                                       this.props.search[i].id)}/>
@@ -74,10 +83,6 @@ class SearchPage extends React.Component {
   }
 
   componentWillReceiveProps(nextState) {
-    if (this.state.search !== nextState.route.path) {
-      this.props.clearSearch();
-    }
-
     this.setState({ search: nextState.route.path,
                     queryString: nextState.location.search.slice(1)});
   }

@@ -26,3 +26,4 @@ app/assets/images/luna-four.jpeg
 app/assets/images/luna-five.jpeg
 docs/
 app/assets/images
+/config/application.yml

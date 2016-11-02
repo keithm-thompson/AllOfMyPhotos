@@ -35,10 +35,9 @@ module AllMyPhotos
         access_key_id: ENV["s3_access_key_id"],
         secret_access_key: ENV["s3_secret_access_key"],
         s3_region: ENV["s3_region"]
-      }
+      },
+      compression: { :png => false, :jpeg => '-optimize' }
     }
-
-    config.paperclip_defaults = { :compression => { :png => false, :jpeg => '-optimize' } }
 
     Dinosaurus.configure do |config|
       config.api_key = '470d531fe2805a8660c45f4eff1d6631'

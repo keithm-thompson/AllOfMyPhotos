@@ -24,19 +24,6 @@ export default class AuthForm extends React.Component {
   }
 
   handleGuest(e) {
-    // let username = ["g", "u", "e", "s", "t"];
-    // let password = ["s", "t", "a", "r", "w", "a", "r", "s"];
-    // let usernameState;
-    // let passwordState;
-    // e.preventDefault();
-    // while (username.length > 0) {
-    //   usernameState = this.state.username + username.shift();
-    //   this.setState({username: usernameState});
-    // }
-    // while (password.length > 0) {
-    //   passwordState = this.state.password + password.shift();
-    //   this.setState({ password: passwordState });
-    // }
     const user = {
       username: "guest",
       password: "starwars"

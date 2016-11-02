@@ -1,7 +1,8 @@
 class Photo < ActiveRecord::Base
   validates :user_id, presence: true
 
-  has_attached_file :image
+  has_attached_file :image,
+  processors: [:thumbnail, :paperclip_optimizer]
   validates_attachment_presence :image
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
@@ -16,7 +17,7 @@ class Photo < ActiveRecord::Base
     source: :album
 
   has_many :taggings
-  
+
   has_many :tags,
     through: :taggings,
     source: :tag

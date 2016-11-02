@@ -2,10 +2,10 @@ class User < ActiveRecord::Base
 	attr_reader :password
 
 	validates :username, :password_digest, :session_token, presence: true
-	validates :username, uniqueness: true
-	validates :password, length: {minimum: 6}, allow_nil: :true
+	validates :username, uniqueness: true, length: { maximum: 10 }
+	validates :password, length: { minimum: 6 }, allow_nil: :true
 
-	has_attached_file :image, default_url: "inspire-me-five.jpeg"
+	has_attached_file :image, default_url: "https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/inspire-me-six.jpeg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 	after_initialize :ensure_session_token

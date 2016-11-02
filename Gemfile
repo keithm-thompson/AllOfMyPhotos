@@ -27,10 +27,17 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 
 gem "paperclip", '5.0.0.beta1'
+gem 'image_optim'
+gem 'image_optim_pack'
+gem 'paperclip-optimizer'
 gem 'figaro'
 gem 'aws-sdk', '>= 2.0'
 
 gem 'faker'
+gem 'dinosaurus'
+group :production do
+   gem 'heroku-deflater'
+end
 # Use Unicorn as the app server
 # gem 'unicorn'
 

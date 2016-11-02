@@ -38,6 +38,12 @@ module AllMyPhotos
       }
     }
 
+    config.paperclip_defaults = { :compression => { :png => false, :jpeg => '-optimize' } }
+
+    Dinosaurus.configure do |config|
+      config.api_key = '470d531fe2805a8660c45f4eff1d6631'
+    end
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
   end

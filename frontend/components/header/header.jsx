@@ -11,6 +11,7 @@ class Header extends React.Component {
     this.state = {
       signinModalOpen: false,
       signUpModalOpen: false,
+      dropDownClass: "hidden",
       searchText: ""
     };
     this.closeModal = this.closeModal.bind(this);
@@ -18,6 +19,8 @@ class Header extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleSearchInput = this.handleSearchInput.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.showDropDown = this.showDropDown.bind(this);
+    this.hideDropDown = this.hideDropDown.bind(this);
     window.header = this;
   }
 
@@ -52,13 +55,34 @@ class Header extends React.Component {
   handleSearchInput(e) {
     e.preventDefault();
     this.setState({searchText: e.currentTarget.value});
+    this.showDropDown(e.currentTarget.value)(e);
   }
 
-  handleSearch(e) {
+  handleSearch(type) {
+    return (e) => {
+      e.preventDefault();
+      if (type === "photos") {
+        this.props.searchPhotos(this.state.searchText, () =>{
+          return this.props.router.push(`/search/photos/?${this.state.searchText}`);
+        });
+      } else {
+        this.props.searchUsers(this.state.searchText, ()=>{
+          return this.props.router.push(`/search/?${this.state.searchText}`);
+        });
+      }
+    };
+  }
+
+  showDropDown(searchText) {
+    return (e) => {
+      if(searchText.length > 0 ){
+        this.setState({ dropDownClass: "search-drop-down" });
+      }
+    };
+  }
+  hideDropDown(e) {
     e.preventDefault();
-    this.props.searchUsers(this.state.searchText, ()=>{
-      return this.props.router.push(`/search/?${this.state.searchText}`);
-    });
+    this.setState({ dropDownClass: "hidden" });
   }
 
   welcomePageHeader() {
@@ -102,13 +126,25 @@ class Header extends React.Component {
           </div>
           <ul>
             <li>
-              <form className="search " onSubmit={this.handleSearch} >
+              <form className="search" onSubmit={this.handleSearch("users")} >
                 <input type="text"
                    className="search-text"
                    placeholder="People or Photos"
                    value={this.state.searchText}
-                   onChange={this.handleSearchInput}></input>
+                   onChange={this.handleSearchInput}
+                   onFocus={this.showDropDown(this.state.searchText)}
+                   onBlur={this.hideDropDown}
+                   >
+                </input>
               </form>
+              <ul className={`${this.state.dropDownClass}`}>
+                <li className="search-drop-item" onMouseDown={this.handleSearch("users")}>
+                  Search users
+                </li>
+                <li className="search-drop-item" onMouseDown={this.handleSearch("photos")}>
+                  Search tags
+                </li>
+              </ul>
             </li>
             <li>
               <button onClick={this.handleClick("signout")} className="button"> Sign Out </button>
@@ -119,8 +155,6 @@ class Header extends React.Component {
     );
   }
 
-  // <i className="material-icons " onClick={ this.handleSearch }>search</i>
-  // <button className="search-icon"></input>
   closeModal() {
     this.setState({ signinModalOpen: false });
     this.setState({ signUpModalOpen: false });

@@ -58,7 +58,7 @@ const checkSearchInState = (store) => {
     store.dispatch(clearSearch());
   if (nextState.location.pathname == "/search/photos" || nextState.location.pathname == "/search/photos/" ) {
     let tagName = nextState.location.search.slice(1);
-    store.dispatch(searchPhotos(tagName));
+    store.dispatch(searchPhotos(tagName, () => {}));
   } else {
       let username = nextState.location.search.slice(1);
       store.dispatch(searchUsers(username, ()=>{}));

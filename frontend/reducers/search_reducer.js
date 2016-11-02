@@ -13,7 +13,8 @@ const SearchReducer = (state = [], action) => {
 
     case RECEIVE_PHOTOS_SEARCH_RESULTS:
       return [
-        ...action.photos
+        [...(action.photos.tagged_photos)],
+        [...(action.photos.similar_photos)]
       ];
 
     case CLEAR_SEARCH:

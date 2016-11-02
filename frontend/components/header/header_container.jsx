@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { signin, signup, signout } from '../../actions/session_actions';
-import { searchUsers } from '../../actions/search_actions';
+import { searchUsers, searchPhotos } from '../../actions/search_actions';
 import Header from './header';
 
 const mapStateToProps = (state) => ({
@@ -13,7 +13,8 @@ const mapDispatchToProps = (dispatch) => ({
   signup: (user, callback) => dispatch(signup(user, callback)),
   signout: (callback) => dispatch(signout(callback)),
   clearErrors: () => dispatch({type: "CLEAR_ERRORS"}),
-  searchUsers: (username, callback) => dispatch(searchUsers(username, callback))
+  searchUsers: (username, callback) => dispatch(searchUsers(username, callback)),
+  searchPhotos: (tag, callback) => dispatch(searchPhotos(tag, callback))
 });
 
 export default connect(

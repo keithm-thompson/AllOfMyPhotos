@@ -59,32 +59,61 @@ class SearchPage extends React.Component {
   }
 
   photoItems() {
-    this.rowsOfPhotos = [];
+    this.rowsOfTaggedPhotos = [];
+    this.rowsOfSimilarPhotos = [];
     let photos = [];
-    for(let i = 0; i < this.props.search.length; i++) {
-      photos.push(<UserPhoto key={ this.props.search[i].id }
-        imageUrl={ this.props.search[i].image_url }
-        style={ {marginRight: '5px' }}
-        handleClick={ this.handleView(
-                                      this.props.search[i].user.id,
-                                      this.props.search[i].id)}/>
-                                    );
+    if (this.props.search.length > 0) {
+      for(let i = 0; i < this.props.search[0].length; i++) {
+        photos.push(<UserPhoto key={ this.props.search[0][i].id }
+          imageUrl={ this.props.search[0][i].image_url }
+          style={ { marginRight: '5px' }}
+          handleClick={ this.handleView(
+                                        this.props.search[0][i].user.id,
+                                        this.props.search[0][i].id)}/>
+                                      );
 
-      if(i > 0 && i % 4  === 0 || i === this.props.search.length-1) {
-        this.rowsOfPhotos.push(
-          <ul className="user-photos-container" key={i}>
-            { photos }
-          </ul>
-        );
-      photos = [];
+        if(i > 0 && i % 4  === 0 || i === this.props.search[0].length-1) {
+          this.rowsOfTaggedPhotos.push(
+            <ul className="user-photos-container" key={i}>
+              { photos }
+            </ul>
+          );
+        photos = [];
+        }
+      }
+
+      for(let i = 0; i < this.props.search[1].length; i++) {
+        photos.push(<UserPhoto key={ this.props.search[1][i].id }
+          imageUrl={ this.props.search[1][i].image_url }
+          style={ { marginRight: '5px' }}
+          handleClick={ this.handleView(
+                                        this.props.search[1][i].user.id,
+                                        this.props.search[1][i].id)}/>
+                                      );
+
+        if(i > 0 && i % 4  === 0 || i === this.props.search[1].length-1) {
+          this.rowsOfSimilarPhotos.push(
+            <ul className="user-photos-container" key={i}>
+              { photos }
+            </ul>
+          );
+        photos = [];
+        }
       }
     }
-    return this.rowsOfPhotos;
+    return <div>
+          <h1 className="photo-label"> Photos tagged with { this.state.queryString }:</h1>
+          { this.rowsOfTaggedPhotos }
+          <h1 className="photo-label"> Photos with a similar tag:</h1>
+          { this.rowsOfSimilarPhotos }
+          </div>;
   }
 
   componentWillReceiveProps(nextState) {
-    this.setState({ search: nextState.route.path,
-                    queryString: nextState.location.search.slice(1)});
+    this.setState({
+                    search: nextState.route.path,
+                    queryString: nextState.location.search.slice(1)
+                  });
   }
 
   render () {
@@ -100,7 +129,6 @@ class SearchPage extends React.Component {
       searchItems = this.photoItems();
       photosItemClasses = classNames({ "search-bar-list-active": true });
     }
-
 
     return (
       <div>

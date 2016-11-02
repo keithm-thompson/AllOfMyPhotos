@@ -40,8 +40,7 @@ class ViewAlbum extends React.Component {
         photos = [];
         }
       }
-      
-      if(this.props.userProperties.id === this.props.currentUser.userId) {
+      if(this.props.userProperties.id === this.props.currentUser.id) {
         editAlbumLink = <div className="edit-album">
           <i className="material-icons">mode_edit</i>
           <Link to={`/users/${this.props.userProperties.id}/albums/${this.props.album.id}/edit_album`}>Edit Album</Link>

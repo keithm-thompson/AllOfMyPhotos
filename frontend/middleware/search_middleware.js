@@ -25,7 +25,10 @@ const SearchMiddleware = ({ getState, dispatch }) => (next) => (action) => {
       fetchUserSearchResults(action.username, success, error);
       return next(action);
     case SEARCH_PHOTOS:
-      success = (photos) => dispatch(receivePhotosSearchResults(photos));
+      success = (photos) =>{
+        action.callback();
+        return dispatch(receivePhotosSearchResults(photos));
+      };
       error = (e) => console.log(e);
       fetchPhotoSearchResults(action.tagName, success, error);
       return next(action);

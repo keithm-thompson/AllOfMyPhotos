@@ -5,7 +5,7 @@
 }
 
 .firstContentImage {
-  background-image: image-url("splash-page.jpeg");
+  background-image: url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/splash-page-min.jpeg");
   height: 929px;
 }
 .splashPage div {
@@ -78,13 +78,13 @@
   letter-spacing: 1.1px;
 }
 .firstImage {
-  background-image: image-url("splash-page-list-one");
+  background-image: url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/splash-page-list-one-min.jpeg");
 }
 .secondImage {
-  background-image: image-url("splash-page-list-two");
+  background-image: url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/splash-page-list-two-min.jpeg");
 }
 .thirdImage {
-  background-image: image-url("splash-page-list-three");
+  background-image: url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/splash-page-list-three-min.jpeg");
 }
 
 .inspireMe {

@@ -1,3 +1,4 @@
+require 'byebug'
 class Api::PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
@@ -78,7 +79,27 @@ class Api::PhotosController < ApplicationController
 
   def search
     tag = Tag.where(tag_name: params[:tag_name])
-    if tag.length > 0
+
+    @similar_tags = Dinosaurus.lookup(params[:tag_name])
+    if (@similar_tags.length > 0)
+      adjectives, nouns, verbs = [], [], []
+      if (@similar_tags[:adjective])
+        adjectives = @similar_tags[:adjective][:syn]
+      end
+
+      if (@similar_tags[:noun])
+        nouns = @similar_tags[:noun][:syn]
+      end
+
+      if (@similar_tags[:verb])
+        verbs = @similar_tags[:verb][:syn]
+      end
+
+      @similar_tags = adjectives.concat(nouns).concat(verbs)
+      @similar_tags = Tag.joins(:taggings).joins(:photos).where(tag_name: @similar_tags)
+    end
+
+    if tag.length > 0 || @similar_tags.length > 0
       @photos = tag.first.photos
       render "api/photos/feed"
     else

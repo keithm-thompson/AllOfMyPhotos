@@ -27,20 +27,24 @@ class Feed extends React.Component {
   }
 
   render() {
-    const feedPhotos = this.props.feedPhotos.map((photo) => {
-       return <FeedPhoto
-                key={photo.id}
-                photo={photo}
-                clickPhoto={ this.handleViewPhoto(photo.user.id, photo.id) }
-                clickUser={ this.handleViewProfile(photo.user.id) }
-              />;
-    });
+    if(this.props.feedPhotos.length > 0) {
+      const feedPhotos = this.props.feedPhotos.map((photo) => {
+         return <FeedPhoto
+                  key={photo.id}
+                  photo={photo}
+                  clickPhoto={ this.handleViewPhoto(photo.user.id, photo.id) }
+                  clickUser={ this.handleViewProfile(photo.user.id) }
+                />;
+      });
 
-    return (
-      <ul className="feed-container">
-        { feedPhotos }
-      </ul>
-    );
+      return (
+        <ul className="feed-container">
+          { feedPhotos }
+        </ul>
+      );
+    } else {
+      return <p className="empty-feed">Welcome to AllOfMyPhotos! Seems like your feed is empty. Please search for some users to follow.</p>;
+    }
   }
 }
 export default withRouter(Feed);

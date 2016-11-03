@@ -35,6 +35,7 @@ const SessionMiddleware = ({ getState, dispatch }) => (next) => (action) => {
 
     case SIGNOUT:
       const complete = () => {
+        action.callback();
         next(action);
         action.callback();
       };

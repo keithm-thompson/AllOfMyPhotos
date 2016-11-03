@@ -21,6 +21,7 @@ class ViewPhoto extends React.Component {
     this.handleTagInput = this.handleTagInput.bind(this);
     this.handleTagSubmit = this.handleTagSubmit.bind(this);
     this.handleRemoveTag = this.handleRemoveTag.bind(this);
+    this.navBackToUser = this.navBackToUser.bind(this);
   }
 
   handleNav(num) {
@@ -56,7 +57,9 @@ class ViewPhoto extends React.Component {
       );
     };
   }
-
+  navBackToUser() {
+    this.props.router.push(`/users/${this.props.userProperties.id}`);
+  }
   handleSearch(tagName) {
     return (e) => {
       e.preventDefault();
@@ -314,10 +317,11 @@ class ViewPhoto extends React.Component {
 
       return(
         <div className={this.viewPhotoContainerClasses} onMouseMove={this.showActions}>
-          <div className={ this.userInfoClass }>
+          <div className={ this.userInfoClass } onClick={this.navBackToUser}>
             <img src={ this.props.userProperties.image_url } className="user-icon"></img>
-            <Link to={ `/users/${ this.props.userProperties.id }` }
-              >{ this.props.userProperties.username }</Link>
+            <Link to={ `/users/${ this.props.userProperties.id }` }>
+              { this.props.userProperties.username }
+            </Link>
             { this.title }
           </div>
           { this.tagsContainer }

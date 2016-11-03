@@ -26,7 +26,6 @@ class Header extends React.Component {
 
   static handleClickOutside(type) {
     return (e) => {
-      console.log(window.that);
     e.preventDefault();
     window.header.handleClick(type)(e);
     window.header.forceUpdate();

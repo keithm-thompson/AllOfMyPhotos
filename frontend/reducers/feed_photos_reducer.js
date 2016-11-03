@@ -3,7 +3,6 @@ import {
 } from '../actions/photo_actions';
 
 const FeedPhotosReducer = (state = [], action) => {
-  
   switch (action.type) {
     case RECEIVE_FEED_PHOTOS:
       return [

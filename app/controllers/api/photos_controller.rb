@@ -100,7 +100,7 @@ class Api::PhotosController < ApplicationController
 
     if tag.length > 0 || @similar_tags.length > 0
       @photos = tag.first.photos
-      render "api/photos/feed"
+      render "api/photos/photos_search"
     else
       render(
         json: [],

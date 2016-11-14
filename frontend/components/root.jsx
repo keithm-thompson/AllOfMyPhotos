@@ -40,14 +40,14 @@ const Root = ({ store }) => (
 );
 
 const _redirectIfLoggedIn = (store) => (nextState, replace) => {
-  const currentUser = store.getState().session.currentUser;
+  const currentUser = store.getState().session.currentUser || window.currentUser;
   if (currentUser) {
     replace('/');
   }
 };
 
 const _ensureLoggedIn = (store) => (nextState, replace) => {
-  const currentUser = store.getState().session.currentUser;
+  const currentUser = store.getState().session.currentUser || window.currentUser;
   if (!currentUser) {
     replace('/welcome');
   }

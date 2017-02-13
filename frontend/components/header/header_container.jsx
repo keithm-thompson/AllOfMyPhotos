@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
   signin: (user, callback) => dispatch(signin(user, callback)),
   signup: (user, callback) => dispatch(signup(user, callback)),
   signout: (callback) => dispatch(signout(callback)),
-  clearErrors: () => dispatch({type: "CLEAR_ERRORS"}),
+  clearErrors: () => dispatch({ type: "CLEAR_ERRORS" }),
   searchUsers: (username, callback) => dispatch(searchUsers(username, callback)),
   searchPhotos: (tag, callback) => dispatch(searchPhotos(tag, callback))
 });

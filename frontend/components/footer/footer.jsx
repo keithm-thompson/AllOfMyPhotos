@@ -5,9 +5,9 @@ const Footer = (props) => {
     return(
       <div className="footer group">
         <div className="footer-logo">Welcome to AllOfMyPhotos.</div>
-        <ul className="">
+        <ul>
           <li>
-            <a href="#"> Visit The Git Repo! </a>
+            <a href="https://www.github.com/keithm-thompson/allofmyphotos"> Visit The Git Repo! </a>
           </li>
         </ul>
       </div>

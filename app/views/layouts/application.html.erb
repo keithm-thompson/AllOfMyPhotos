@@ -4,6 +4,7 @@
   <title>Welcome to AllMyPhotos</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= csrf_meta_tags %>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -17,8 +18,6 @@
       inspireMeEight: "<%= image_url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/inspire-me-eight.jpeg") %>",
       userShowOne: "<%= image_url("https://s3.amazonaws.com/allofmyphotos-pro/photos/images/000/000/user-show-background-min.jpeg") %>"
     }
-    // inspireMeThree: "<%= image_url("tinified/inspire-me-three.jpeg") %>",
-    // inspireMeFive: "<%= image_url("tinified/inspire-me-five.jpeg") %>",
 
     window.cameraRoll = { cameraRoll: "<%= image_url("camera-roll.jpg") %>" }
   </script>

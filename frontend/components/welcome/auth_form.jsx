@@ -24,6 +24,7 @@ export default class AuthForm extends React.Component {
   }
 
   handleGuest(e) {
+    e.preventDefault();
     const user = {
       username: "guest",
       password: "starwars"

@@ -32,5 +32,8 @@
     "react-router": "^2.8.1",
     "redux": "^3.6.0",
     "webpack": "^1.13.2"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.1"
   }
 }

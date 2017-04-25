@@ -5,6 +5,7 @@ import SearchMiddleware from './search_middleware';
 import PhotosMiddleware from './photos_middleware';
 import UserMiddleware from './user_middleware';
 import AlbumsMiddleware from './albums_middleware';
+// import { createLogger } from 'redux-logger';
 
 const RootMiddleware = applyMiddleware(
   SessionMiddleware,

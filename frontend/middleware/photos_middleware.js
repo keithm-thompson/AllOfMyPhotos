@@ -1,5 +1,6 @@
 import {
   fetchInitialFeedPhotos,
+  fetchNextFeedPhotos,
   fetchFullFeedPhotos,
   fetchUserPhotos,
   uploadPhoto,
@@ -15,6 +16,7 @@ import {
   receiveFeedPhotos,
   updatePhoto,
   FETCH_INITIAL_FEED,
+  FETCH_NEXT_PHOTOS,
   FETCH_FULL_FEED,
   FETCH_PHOTOS,
   UPLOAD_PHOTO,
@@ -32,6 +34,11 @@ const PhotosMiddleware = ({ getState, dispatch }) => (next) => (action) => {
     case FETCH_INITIAL_FEED:
       success = (photos) => dispatch(receiveFeedPhotos(photos));
       fetchInitialFeedPhotos(success, error);
+      return next(action);
+
+    case FETCH_NEXT_PHOTOS:
+      success = (photos) => dispatch(receiveFeedPhotos(photos));
+      fetchNextFeedPhotos(action.startIdx, action.numPhotos, success, error);
       return next(action);
 
     case FETCH_FULL_FEED:

@@ -5,6 +5,7 @@ export const RECEIVE_PHOTOS = "RECEIVE_PHOTOS";
 export const RECEIVE_PHOTO = "RECEIVE_PHOTO";
 export const REMOVE_PHOTO = "REMOVE_PHOTO";
 export const FETCH_INITIAL_FEED = "FETCH_INITIAL_FEED";
+export const FETCH_NEXT_PHOTOS = "FETCH_NEXT_PHOTOS";
 export const FETCH_FULL_FEED = "FETCH_FULL_FEED";
 export const FETCH_PHOTOS = "FETCH_PHOTOS";
 export const ADD_TAG_TO_PHOTO = "ADD_TAG_TO_PHOTO";
@@ -43,6 +44,12 @@ export const receiveFeedPhotos = (photos) => ({
 
 export const fetchInitialFeed = () => ({
   type: FETCH_INITIAL_FEED
+});
+
+export const fetchNextPhotos = (startIdx, numPhotos) => ({
+  type: FETCH_NEXT_PHOTOS,
+  startIdx,
+  numPhotos
 });
 
 export const fetchFullFeed = () => ({

@@ -2,7 +2,9 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Feed from './feed';
 import {
-  fetchFullFeed
+  fetchFullFeed,
+  fetchInitialFeed,
+  fetchNextPhotos
 } from '../../actions/photo_actions';
 
 const mapStateToProps = (state) => ({
@@ -10,7 +12,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchFullFeed: () => dispatch(fetchFullFeed())
+  fetchFullFeed: () => dispatch(fetchFullFeed()),
+  fetchInitialFeed: () => dispatch(fetchInitialFeed()),
+  fetchNextPhotos: (startIdx, numPhotos) => dispatch(fetchNextPhotos(startIdx, numPhotos))
 });
 
 export default connect(

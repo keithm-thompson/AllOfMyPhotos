@@ -30,6 +30,15 @@ export const fetchInitialFeedPhotos = (success, error) => (
   })
 );
 
+export const fetchNextFeedPhotos = (startIdx, numPhotos, success, error) => (
+  $.ajax({
+    method: 'GET',
+    url: `api/next_photos/${startIdx}/${numPhotos}`,
+    success,
+    error
+  })
+);
+
 export const fetchFullFeedPhotos = (success, error) => (
   $.ajax({
     method: 'GET',

@@ -36,11 +36,11 @@ export default class AuthForm extends React.Component {
     if (this.props.errors){
       return(
   			<ul>
-  				{this.props.errors.map((error, idx) => (
+  				{ this.props.errors.map((error, idx) => (
   					<li key={`error-${idx}`}>
   						{error}
   					</li>
-  				))}
+  				)) }
   			</ul>
   		);
     }

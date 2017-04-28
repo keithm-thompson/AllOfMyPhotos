@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'search', to: 'users#search'
     get 'search/photos', to: 'photos#search'
     get 'initial_feed', to: 'photos#initial_feed'
+    get 'next_photos/:start_idx/:num_photos', to: 'photos#next_photos'
     get 'full_feed', to: 'photos#full_feed'
     post 'photos/:id/add_tag', to: 'photos#add_tag_to_photo'
     delete 'photos/:photo_id/tags/:id', to: 'photos#remove_tag_from_photo'

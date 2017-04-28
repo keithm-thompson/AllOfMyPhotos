@@ -33,7 +33,7 @@ class Api::PhotosController < ApplicationController
         ORDER BY
           photos.created_at DESC
         LIMIT
-          10
+          6
         SQL
     if @photos
       render "api/photos/feed"
@@ -43,7 +43,40 @@ class Api::PhotosController < ApplicationController
         status: 404
       )
     end
+  end
 
+  def next_photos
+    @photos = Photo.includes(:user).find_by_sql([<<-SQL, current_user.id, params[:num_photos], params[:start_idx]])
+        SELECT
+          photos.*
+        FROM
+          photos
+        WHERE
+          photos.user_id IN (
+            SELECT
+              followings.followed_id
+            FROM
+              users
+            JOIN
+              followings ON followings.follower_id = users.id
+            WHERE
+              followings.follower_id = ?
+            )
+        ORDER BY
+          photos.created_at DESC
+        LIMIT
+          ?
+        OFFSET
+          ?
+        SQL
+    if @photos
+      render "api/photos/feed"
+    else
+      render(
+        json: ["Feed could not be fetched. Please try again"],
+        status: 404
+      )
+    end
   end
 
   def full_feed

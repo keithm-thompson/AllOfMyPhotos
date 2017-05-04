@@ -1,6 +1,6 @@
 # AllOfMyPhotos
 
-[AllOfMyPhotos] (https://www.allofmyphotos.io) is a full-stack web application inspired by Flickr. It is built on a Ruby on Rails backend, connected to a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
+[AllOfMyPhotos](https://www.allofmyphotos.io) is a full-stack web application inspired by Flickr. It is built on a Ruby on Rails backend, connected to a PostgreSQL database, and React.js with a Redux architectural framework on the frontend.
 
 ![AllOfMyPhotos](/docs/welcome.png)
 
@@ -23,7 +23,7 @@ When a user chooses to search for other users to follow - a smart search is perf
 ![Users_Search](/docs/users_search.png)
 #### Tags Search
 
-Utilizes the [Big Huge Thesaurus API] (https://words.bighugelabs.com/api.php) to allow users to perform powerful tag searches. Upon executing a tag search, all photos with the tag or the tags synonyms, will be shown, allowing users to click and view the photo and the user that uploaded it.
+Utilizes the [Big Huge Thesaurus API](https://words.bighugelabs.com/api.php) to allow users to perform powerful tag searches. Upon executing a tag search, all photos with the tag or the tags synonyms, will be shown, allowing users to click and view the photo and the user that uploaded it.
 
 ![Tag_Search](/docs/tag_search.png)
 ### Uploading Photos
